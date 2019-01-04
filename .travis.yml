@@ -52,12 +52,14 @@ matrix:
       env: DESTINATION="OS=9.3,name=iPhone 5s" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES"
 
 before_install:
-  - gem install xcpretty -N --no-ri --no-rdoc --quiet;
-  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
-  - brew update;
-  - brew outdated carthage || brew upgrade carthage;
   - if [ "$CARTHAGE_TEST" == "YES" or "$XCODE_TEST" == "YES" ]; then
+    gem install xcpretty -N --no-ri --no-rdoc --quiet;
+    brew update;
+    brew outdated carthage || brew upgrade carthage;
     carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
+    fi
+    - if [ "$POD_LINT" == "YES" ]; then
+    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
     fi
 #  - swift -version;
 #  - xcrun simctl list;
@@ -66,7 +68,9 @@ before_install:
 #  - xcodebuild -list;
 
 install:
-  - ./install-swiftlint.sh;
+  - if [ "$SWIFT_LINT" == "YES" ]; then
+    ./install-swiftlint.sh;
+    fi
 
 script:
   - set -o pipefail;
