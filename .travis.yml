@@ -42,23 +42,22 @@ matrix:
       env: DESTINATION="OS=9.3,name=iPhone 5s" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES"
 
 before_install:
-  - gem install xcpretty -N --no-ri --no-rdoc;
-  - gem install cocoapods --pre --no-rdoc --no-ri --no-document;
+  - gem install xcpretty -N --no-ri --no-rdoc --quiet;
+  - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
   - brew update;
   - brew outdated carthage || brew upgrade carthage;
   - carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
+#  - swift -version;
+#  - xcrun simctl list;
+#  - xcodebuild -version;
+#  - xcodebuild -showsdks;
+#  - xcodebuild -list;
 
 install:
   - ./install-swiftlint.sh;
 
 script:
   - set -o pipefail;
-
-#  - swift -version;
-#  - xcrun simctl list;
-#  - xcodebuild -version;
-#  - xcodebuild -showsdks;
-#  - xcodebuild -list;
 
   - if [ "$XCODE_TEST" == "YES" ]; then
     xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES | xcpretty -c;
