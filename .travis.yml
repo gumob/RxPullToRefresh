@@ -46,10 +46,10 @@ before_install:
 #    HOMEBREW_NO_AUTO_UPDATE=1 brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/a85feeb75bc9e9beb7f2e9dc6e2ccc996a6aeaf5/Formula/carthage.rb;
 #    fi
   - brew outdated carthage || brew upgrade carthage;
+  - carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
 
 install:
   - ./install-swiftlint.sh;
-  - carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
 
 script:
   - set -o pipefail;
