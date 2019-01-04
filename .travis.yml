@@ -10,29 +10,25 @@ branches:
 
 cache:
   directories:
-#    - $HOME/Library/Caches/org.carthage.CarthageKit/dependencies
-    - Carthage
     - Pods
+    - Carthage
+#    - $HOME/Library/Caches/org.carthage.CarthageKit/dependencies
 
 env:
   global:
     - secure: IsSPmEYizg0SVZoWqO8JnSgCKlNSBLIFs+XZjOCjb12Z+YToMS3tmo+EYrmaKNJRMrvJEFyRlgyxlyEQGHc57eFGzZAjLGsiiIu++xY7AzDALC+CDG3w2daNF+pWXX58145Wj5CpOrkauF+DHUMYCQWa3g4JGoMmP001fjKlF+9TUF7K017Ae6awVu3YFJqvO2KuCEpe3J7b6Ii0hjUEnHMzHgK+ZFwGbc8QXz21AGO5YXT3+6zxaLB4TdEyazRC/QxaDBpmSE8k4RMeOXBTbwhpJhWbrDuGGJWw46yO006d7YdU8+fkf6hSBswN5YGbOga8dwRB4vVilJ6P8iiUV9QL4C1BxU8jFBkil563o5mbl6MZrEjXPQuvwyB9xSf6LGjYyVXrAVj6nIar+QcfwSIqn2520qYxrYo5CAaZ/9ozmRg4v4fbnA6m2fEW1lI7USQGKcByit6ZGxQQ6YwdS0mw83fvGotxptgc/by2e7b1O64i2BWEh/5fHt/B3+6j7HkzDHvMKoOgFoNKMbrtEit9R7Dnrdsgd0awVnQzY0EdWdmYGH1A9h9pHJhmEoQq2S1X2tOf1WC0y67dY1FIMMk+27dn7ZBTsmKKdQf/RCYNSxhzHFjyaMr5nBkqxf4UV73l0JMT6Nhi5KrSCIYnOUA9peEETXmo9oBssPuVHSk=
     - XCODEPROJ="RxPullToRefresh.xcodeproj"
-    - IOS_SCHEME="RxPullToRefresh"
+    - SCHEME_IOS="RxPullToRefresh"
 
 matrix:
   include:
-    # Carthage Tests
     - env: TEST="YES" CARTHAGE_TEST="YES"
-    # Pod lint
     - env: POD_LINT="YES"
-    # SwiftLint
     - env: SWIFT_LINT="YES"
-    # iOS Tests
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=11.4,name=iPhone 7 Plus"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=10.3.1,name=iPhone 6"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=9.3,name=iPhone 5s"
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
@@ -58,9 +54,9 @@ install:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -enableCodeCoverage $COVERAGE | xcpretty -c;
+    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DEST" -enableCodeCoverage $COVERAGE | xcpretty -c;
     elif [ "$XCODE_TEST" == "NO" ]; then
-    xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
+    xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DEST" -configuration Release | xcpretty -c;
     fi
   - if [ "CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
