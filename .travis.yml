@@ -63,6 +63,7 @@ script:
   - if [ "$LINT" == "YES" ]; then
     swiftlint;
     carthage build --no-skip-current;
+    pod lib lint;
     fi
 
 after_success:
