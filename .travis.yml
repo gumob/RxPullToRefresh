@@ -66,10 +66,11 @@ script:
     fi
 
   - if [ "CARTHAGE_TEST" == "YES" ]; then
-    carthage build --no-skip-current;
+    carthage build --no-skip-current --platform $CARTHAGE_PLATFORM;
     fi
 
   - if [ "$POD_LINT" == "YES" ]; then
+    pod repo update;
     pod lib lint;
     fi
 
