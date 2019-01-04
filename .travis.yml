@@ -6,7 +6,7 @@ branches:
 
 cache:
   directories:
-    - $HOME/Library/Caches/org.carthage.CarthageKit/dependencies
+#    - $HOME/Library/Caches/org.carthage.CarthageKit/dependencies
     - Carthage
     - Pods
 
