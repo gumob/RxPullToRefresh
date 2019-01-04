@@ -58,22 +58,18 @@ install:
 
 script:
   - set -o pipefail;
-
   - if [ "$XCODE_TEST" == "YES" ]; then
     xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES | xcpretty -c;
     elif [ "$XCODE_TEST" == "NO" ]; then
     xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
     fi
-
   - if [ "CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform $CARTHAGE_PLATFORM;
     fi
-
   - if [ "$POD_LINT" == "YES" ]; then
     pod repo update;
     pod lib lint;
     fi
-
   - if [ "$SWIFT_LINT" == "YES" ]; then
     swiftlint;
     fi
@@ -81,6 +77,16 @@ script:
 after_success:
   - if [ "$COVERAGE" == "YES" ]; then
     bash <(curl -s https://codecov.io/bash) -J 'RxPullToRefresh' -cF "$CODECOV_FLAG" -y ".codecov.yml";
+    fi
+
+after_failure:
+  - if [ "CARTHAGE_TEST" == "YES" ]; then
+    cat $TMPDIR/carthage-*.log | true
+    cat /var/log/system.log
+    fi
+  - if [ "$XCODE_TEST" == "YES" ]; then
+    find $HOME/Library/Developer/Xcode/DerivedData/RxPullToRefresh-*/Logs/ -name '*.log' -print0 | xargs -0 cat
+    cat /var/log/system.log
     fi
 
 notifications:
