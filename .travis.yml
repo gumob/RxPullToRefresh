@@ -22,7 +22,7 @@ matrix:
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: CARTHAGE_TEST="YES" POD_LINT="YES"
+      env: CARTHAGE_TEST="YES" CARTHAGE_PLATFORM="iOS" POD_LINT="YES"
     # iOS Tests
     - os: osx
       language: objective-c
