@@ -25,10 +25,10 @@ matrix:
     - env: TEST="YES" CARTHAGE_TEST="YES"
     - env: POD_LINT="YES"
     - env: SWIFT_LINT="YES"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=11.4,name=iPhone 7 Plus"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=10.3.1,name=iPhone 6"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" DEST="OS=9.3,name=iPhone 5s"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="12.1" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="11.4" DEVICE="iPhone 7 Plus"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="10.3.1" DEVICE="iPhone 6"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="9.3" DEVICE="iPhone 5s"
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
@@ -54,9 +54,9 @@ install:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DEST" -enableCodeCoverage $COVERAGE | xcpretty -c;
+    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "OS=$OS_VER,name=$DEVICE" -enableCodeCoverage $COVERAGE | xcpretty -c;
     elif [ "$XCODE_TEST" == "NO" ]; then
-    xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DEST" -configuration Release | xcpretty -c;
+    xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "OS=$OS_VER,name=$DEVICE" -configuration Release | xcpretty -c;
     fi
   - if [ "CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
