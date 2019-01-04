@@ -23,22 +23,22 @@ env:
 matrix:
   include:
     # Carthage Tests
-    - env: CARTHAGE_TEST="YES"
+    - env: TEST="YES" CARTHAGE_TEST="YES"
     # Pod lint
     - env: POD_LINT="YES"
     # SwiftLint
     - env: SWIFT_LINT="YES"
     # iOS Tests
-    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
-    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
-    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
+    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
     gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
     fi
-  - if [ "$CARTHAGE_TEST" == "YES" OR "$XCODE_TEST" == "YES" ]; then
+  - if [ "$TEST" == "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
     brew update;
     brew outdated carthage || brew upgrade carthage;
