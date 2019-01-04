@@ -1,3 +1,7 @@
+language: objective-c
+os: osx
+osx_image: xcode10.1
+
 branches:
   only:
     - master
@@ -19,47 +23,26 @@ env:
 matrix:
   include:
     # Carthage Tests
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: TEST="YES" CARTHAGE_TEST="YES"
+    - env: CARTHAGE_TEST="YES"
     # Pod lint
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: POD_LINT="YES"
+    - env: POD_LINT="YES"
     # SwiftLint
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: SWIFT_LINT="YES"
+    - env: SWIFT_LINT="YES"
     # iOS Tests
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
-    - os: osx
-      language: objective-c
-      osx_image: xcode10.1
-      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
+    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
+    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
+    - env: XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
 
 before_install:
-  - if [ "$TEST" == "YES" ]; then
+  - if [ "$POD_LINT" == "YES" ]; then
+    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
+    fi
+  - if [ "$CARTHAGE_TEST" == "YES" OR "$XCODE_TEST" == "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
     brew update;
     brew outdated carthage || brew upgrade carthage;
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
-    fi
-    - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
     fi
 #  - swift -version;
 #  - xcrun simctl list;
@@ -68,7 +51,7 @@ before_install:
 #  - xcodebuild -list;
 
 install:
-  - if [ "$SWIFT_LINT" == "YES" ]; then
+  - if [ "$WIFT_LINT" == "YES" ]; then
     ./install-swiftlint.sh;
     fi
 
@@ -79,7 +62,7 @@ script:
     elif [ "$XCODE_TEST" == "NO" ]; then
     xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
     fi
-  - if [ "$CARTHAGE_TEST" == "YES" ]; then
+  - if [ "CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
@@ -87,7 +70,7 @@ script:
     pod lib lint;
     fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
-    swiftlint lint --config .swiftlint.yml;
+    swiftlint lint;
     fi
 
 after_success:
