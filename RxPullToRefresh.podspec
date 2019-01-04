@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
     s.version           = "1.0.0"
     s.summary           = "A Swift framework enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift."
     s.homepage          = "https://github.com/gumob/RxPullToRefresh"
-    s.documentation_url = "https://gumob.github.io/RxPullToRefresh/"
+    s.documentation_url = "https://gumob.github.io/RxPullToRefresh"
     s.license           = { :type => "MIT", :file => "LICENSE" }
     s.author            = { "gumob" => "hello@gumob.com" }
 
@@ -18,6 +18,7 @@ Pod::Spec.new do |s|
     s.ios.deployment_target     = "9.0"
     s.ios.framework             = "Foundation", "UIKit", "CoreGraphics"
 
-    s.libraries                 = "RxSwift", "RxCocoa"
+    s.dependency 'RxSwift', '~> 4.0'
+    s.dependency 'RxCocoa', '~> 4.0'
 
 end
