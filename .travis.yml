@@ -56,7 +56,7 @@ before_install:
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
   - brew update;
   - brew outdated carthage || brew upgrade carthage;
-  - if [ "$CARTHAGE_TEST" == "YES" || "$XCODE_TEST" == "YES" ]; then
+  - if [ "$CARTHAGE_TEST" == "YES" or "$XCODE_TEST" == "YES" ]; then
     carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
     fi
 #  - swift -version;
@@ -75,7 +75,7 @@ script:
     elif [ "$XCODE_TEST" == "NO" ]; then
     xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
     fi
-  - if [ "CARTHAGE_TEST" == "YES" ]; then
+  - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform $CARTHAGE_PLATFORM;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
