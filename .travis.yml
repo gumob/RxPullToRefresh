@@ -22,12 +22,22 @@ matrix:
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: CARTHAGE_TEST="YES" CARTHAGE_PLATFORM="iOS" POD_LINT="YES"
+      env: CARTHAGE_TEST="YES" CARTHAGE_PLATFORM="iOS"
+    # Pod lint
+    - os: osx
+      language: objective-c
+      osx_image: xcode10.1
+      env: POD_LINT="YES"
+    # SwiftLint
+    - os: osx
+      language: objective-c
+      osx_image: xcode10.1
+      env: SWIFT_LINT="YES"
     # iOS Tests
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: DESTINATION="OS=12.1,name=iPhone XS Max" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES" SWIFT_LINT="YES" COVERAGE="YES" CODECOV_FLAG="ios12"
+      env: DESTINATION="OS=12.1,name=iPhone XS Max" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES" COVERAGE="YES" CODECOV_FLAG="ios12"
     - os: osx
       language: objective-c
       osx_image: xcode10.1
@@ -59,7 +69,7 @@ install:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -enableCodeCoverage YES | xcpretty -c;
+    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -enableCodeCoverage $COVERAGE | xcpretty -c;
     elif [ "$XCODE_TEST" == "NO" ]; then
     xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
     fi
@@ -71,7 +81,7 @@ script:
     pod lib lint;
     fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
-    swiftlint;
+    swiftlint lint;
     fi
 
 after_success:
