@@ -87,7 +87,7 @@ script:
     pod lib lint;
     fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
-    swiftlint lint;
+    swiftlint lint --config .swiftlint.yml;
     fi
 
 after_success:

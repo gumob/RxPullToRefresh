@@ -19,6 +19,9 @@ identifier_name:
     - ok
 
 excluded:
-  - Carthage
-  - Pods
+  - .bundle
   - fastlane
+  - Carthage
+  - Tests
+  - UITests
+  - Example
