@@ -94,7 +94,6 @@ private extension RxPullToRefresh {
      A function called when UIScrollView.contentOffset is changed.
      */
     func contentOffsetChanged() {
-//        guard !self.isForciblyRefreshing else { return }
         guard let sv: UIScrollView = self.scrollView, self.isEnabled else {
             self.scrollRate = 0.0
             self.progressRate = 0.0
@@ -133,23 +132,11 @@ private extension RxPullToRefresh {
             switch self.position {
             case .top where -refreshHeight..<0.0 ~= relativeOffset.y:                 /* Offset is under threshold */
                 if !self.isDragging && !self.isForciblyRefreshing { self.state = .backing }
-//                switch self.isDragging {
-//                case false where !self.isForciblyRefreshing:
-//                    tmpState = .backing
-//                default:
-//                    break
-//                }
             case .top where -CGFloat.infinity...(-refreshHeight) ~= relativeOffset.y: /* Offset is over threshold */
                 tmpRate = 1.0
                 tmpState = .overThreshold
             case .bottom where 0.0..<refreshHeight ~= relativeOffset.y:               /* Offset is under threshold */
                 if !self.isDragging && !self.isForciblyRefreshing { self.state = .backing }
-//                switch self.isDragging {
-//                case false where !self.isForciblyRefreshing:
-//                    tmpState = .backing
-//                default:
-//                    break
-//                }
             case .bottom where refreshHeight...CGFloat.infinity ~= relativeOffset.y:  /* Offset is over threshold */
                 tmpRate = 1.0
                 tmpState = .overThreshold

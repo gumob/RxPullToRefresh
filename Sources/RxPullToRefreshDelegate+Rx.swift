@@ -45,9 +45,13 @@ extension Reactive where Base: RxPullToRefresh {
 
     /** Reactive wrapper for `RxPullToRefreshDelegate.action` method. */
     public var action: ControlEvent<(state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat)> {
-        let source: PublishSubject<(state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat)>
-                = (self.delegate as! RxPullToRefreshDelegateProxy)
-                .actionSubject
+        let source: PublishSubject<(state: RxPullToRefreshState,
+                                    progress: CGFloat, scroll: CGFloat)> = {
+            guard let proxy: RxPullToRefreshDelegateProxy = self.delegate as? RxPullToRefreshDelegateProxy else {
+                return PublishSubject<(state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat)>()
+            }
+            return proxy.actionSubject
+        }()
         return ControlEvent(events: source)
     }
 }

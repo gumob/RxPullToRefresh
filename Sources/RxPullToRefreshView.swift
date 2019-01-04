@@ -13,7 +13,7 @@ import UIKit
   A protocol to customize RxPullToRefreshView.
  */
 internal protocol RxPullToRefreshAnimatable {
-    var canLoadMore: Bool { set get }
+    var canLoadMore: Bool { get set }
     func action(state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat)
 }
 

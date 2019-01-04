@@ -16,11 +16,11 @@ internal enum AnimatorState {
 internal protocol ValueAnimatable {
     associatedtype ValueType: Calculable
 
-    var obj: NSObject? { set get }
-    var keyPath: String { set get }
-    var value: ValueType { set get }
-    var scalar: CGFloat { set get }
-    var isFinished: Bool { set get }
+    var obj: NSObject? { get set }
+    var keyPath: String { get set }
+    var value: ValueType { get set }
+    var scalar: CGFloat { get set }
+    var isFinished: Bool { get set }
 
     mutating func animate()
 }
