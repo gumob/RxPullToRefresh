@@ -22,7 +22,7 @@ matrix:
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: TEST="YES" CARTHAGE_TEST="YES" CARTHAGE_PLATFORM="iOS"
+      env: TEST="YES" CARTHAGE_TEST="YES"
     # Pod lint
     - os: osx
       language: objective-c
@@ -37,26 +37,26 @@ matrix:
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: TEST="YES" DESTINATION="OS=12.1,name=iPhone XS Max" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES" COVERAGE="YES" CODECOV_FLAG="ios12"
+      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: TEST="YES" DESTINATION="OS=11.4,name=iPhone 7 Plus" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES"
+      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=11.4,name=iPhone 7 Plus"
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: TEST="YES" DESTINATION="OS=10.3.1,name=iPhone 6" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES"
+      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=10.3.1,name=iPhone 6"
     - os: osx
       language: objective-c
       osx_image: xcode10.1
-      env: TEST="YES" DESTINATION="OS=9.3,name=iPhone 5s" SCHEME="$IOS_SCHEME" CARTHAGE_PLATFORM="iOS" XCODE_TEST="YES"
+      env: TEST="YES" XCODE_TEST="YES" SCHEME="$IOS_SCHEME" DESTINATION="OS=9.3,name=iPhone 5s"
 
 before_install:
   - if [ "$TEST" == "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
     brew update;
     brew outdated carthage || brew upgrade carthage;
-    carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
+    carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
     - if [ "$POD_LINT" == "YES" ]; then
     gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
@@ -80,7 +80,7 @@ script:
     xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "$DESTINATION" -configuration Release | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
-    carthage build --no-skip-current --platform $CARTHAGE_PLATFORM;
+    carthage build --no-skip-current --platform iOS;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
     pod repo update;
