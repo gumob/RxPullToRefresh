@@ -173,7 +173,6 @@ private extension RxPullToRefresh {
                 }
             default:                                                                  /* Offset is backing to under threshold */
                 self.state = .pulling
-                break
             }
 
         case .loading:

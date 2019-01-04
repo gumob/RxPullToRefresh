@@ -35,21 +35,6 @@ internal protocol Calculable {
 }
 
 extension CGFloat: Calculable {
-//    static func += (lhs: inout CGFloat, rhs: CGFloat) {
-//        lhs = lhs + rhs
-//        return lhs
-//    }
-//
-//    static func -= (lhs: inout CGFloat, rhs: CGFloat) {
-//        lhs = lhs - rhs
-//        return lhs
-//    }
-//
-//    static func /= (lhs: inout CGFloat, scalar: CGFloat) {
-//        lhs = lhs / scalar
-//        return lhs
-//    }
-
     func decimal(_ digit: Int) -> CGFloat {
         var val: CGFloat = 1.0
         val += 1.0
@@ -100,7 +85,7 @@ extension CGPoint: Calculable {
     }
 
     func distance(to: CGPoint) -> CGFloat {
-        return hypot(to.x - self.x, to.y - self.y);
+        return hypot(to.x - self.x, to.y - self.y)
     }
 }
 

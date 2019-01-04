@@ -124,4 +124,3 @@ internal class DefaultRefreshView: RxPullToRefreshView {
         self.backgroundColor = .lightGray /* Debug color */
     }
 }
-

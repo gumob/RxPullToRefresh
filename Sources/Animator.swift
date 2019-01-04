@@ -135,8 +135,8 @@ internal class Animator {
         }
 
         /* Animate properties */
-        for var prop in currentAnimation.properties {
-            if !prop.isFinished { prop.animate() }
+        for var prop in currentAnimation.properties where !prop.isFinished {
+            prop.animate()
         }
 
         /* Callback */
