@@ -40,11 +40,6 @@ before_install:
   - gem install xcpretty -N --no-ri --no-rdoc;
   - gem install cocoapods --pre --no-rdoc --no-ri --no-document;
   - brew update;
-#  - carthageversion=$(carthage version);
-#  - if [ $carthageversion != "0.31.2" ]; then
-#    brew uninstall carthage;
-#    HOMEBREW_NO_AUTO_UPDATE=1 brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/a85feeb75bc9e9beb7f2e9dc6e2ccc996a6aeaf5/Formula/carthage.rb;
-#    fi
   - brew outdated carthage || brew upgrade carthage;
   - carthage bootstrap --platform $CARTHAGE_PLATFORM --no-use-binaries --cache-builds;
 
