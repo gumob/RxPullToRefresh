@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>RxPullToRefresh  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+
+    <a title="RxPullToRefresh  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          RxPullToRefresh Docs
+        </a>
+        
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="https://github.com/gumob/RxPullToRefresh">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">RxPullToRefresh Reference</a>
+      <img class="carat" src="img/carat.png" />
+      RxPullToRefresh  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RxPullToRefresh.html">RxPullToRefresh</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/RxPullToRefreshView.html">RxPullToRefreshView</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Delegate.html">Delegate</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RxPullToRefreshDelegate.html">RxPullToRefreshDelegate</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/UIScrollView.html">UIScrollView</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Extensions/Reactive.html">Reactive</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Enumerations.html">Enumerations</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RxPullToRefreshPosition.html">RxPullToRefreshPosition</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RxPullToRefreshState.html">RxPullToRefreshState</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/RxPullToRefreshAnimationType.html">RxPullToRefreshAnimationType</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Guides.html">Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="usage.html">USAGE</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            
+            <p><a href="https://github.com/gumob/RxPullToRefresh"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg" alt="Carthage compatible"></a>
+<a href="https://travis-ci.com/gumob/RxPullToRefresh"><img src="https://travis-ci.com/gumob/RxPullToRefresh.svg?branch=master" alt="Build Status"></a>
+<a href="https://codecov.io/gh/gumob/RxPullToRefresh"><img src="https://codecov.io/gh/gumob/RxPullToRefresh/branch/master/graph/badge.svg" alt="codecov"></a>
+<a href="https://github.com/gumob/RxPullToRefresh"><img src="https://img.shields.io/badge/platform-ios%20-lightgrey.svg" alt="Platform"></a>
+<img src="https://img.shields.io/badge/Language-Swift%204.2-orange.svg" alt="Language">
+<img src="https://img.shields.io/packagist/l/doctrine/orm.svg" alt="Packagist"></p>
+<h1 id='rxpulltorefresh' class='heading'>RxPullToRefresh</h1>
+
+<p>A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.</p>
+<h2 id='requirements' class='heading'>Requirements</h2>
+
+<ul>
+<li>iOS 9.0 or later</li>
+<li>Swift 4.2</li>
+</ul>
+<h2 id='installation' class='heading'>Installation</h2>
+<h3 id='carthage' class='heading'>Carthage</h3>
+
+<p>Add the following to your <code>Cartfile</code> and follow <a href="https://github.com/Carthage/Carthage#adding-frameworks-to-an-application">these instructions</a>.</p>
+<pre class="highlight plaintext"><code>github "gumob/RxPullToRefresh"
+</code></pre>
+
+<p>Do not forget to include RxSwift.framework. Otherwise it will fail to build the application.<br/></p>
+
+<p><img src="Metadata/carthage-xcode-config.jpg" alt="drawing" width="480" style="width:100%; max-width: 480px;"/></p>
+<h3 id='cocoapods' class='heading'>CocoaPods</h3>
+
+<p>To integrate RxPullToRefresh into your project, add the following to your <code>Podfile</code>.</p>
+<pre class="highlight ruby"><code><span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'9.3'</span>
+<span class="n">use_frameworks!</span>
+
+<span class="n">pod</span> <span class="s1">'RxPullToRefresh'</span>
+</code></pre>
+<h2 id='usage' class='heading'>Usage</h2>
+
+<p>Read the <a href="https://gumob.github.io/RxPullToRefresh/usage.html">usage</a> and the <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html">API reference</a> for detailed information.</p>
+<h2 id='copyright' class='heading'>Copyright</h2>
+
+<p>RxPullToRefresh is released under MIT license, which means you can modify it, redistribute it or use it however you like.</p>
+
+          </div>
+        </section>
+
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>Copyright © 2018 Gumob. All rights reserved.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

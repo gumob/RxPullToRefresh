@@ -1,0 +1,47 @@
+module: RxPullToRefresh
+
+author: Gumob
+author_url: http://gumob.com
+github_url: https://github.com/gumob/RxPullToRefresh
+copyright: 'Copyright © 2018 Gumob. All rights reserved.'
+
+min_acl: public
+clean: true
+readme: "README.md"
+output: "docs"
+documentation: "USAGE.md"
+skip_undocumented: true
+hide_documentation_coverage: true
+# theme: fullwidth
+theme: "themes/fullwidth-ex"
+
+source_directory: Sources
+umbrella_header: "Sources/RxPullToRefresh.h"
+xcodebuild_arguments:
+  - -project
+  - ../RxPullToRefresh.xcodeproj
+  - -scheme
+  - RxPullToRefresh
+exclude:
+  - Sources/DefaultRefreshView.swift
+  - Sources/Helpers.swift
+custom_categories:
+  - name: Classes
+    children:
+      - RxPullToRefresh
+      - RxPullToRefreshView
+  - name: Delegate
+    children:
+      - RxPullToRefreshDelegate
+  - name: Extensions
+    children:
+      - UIScrollView
+      - Reactive
+  - name: Enumerations
+    children:
+      - RxPullToRefreshPosition
+      - RxPullToRefreshState
+      - RxPullToRefreshAnimationType
+  - name: Guides
+    children:
+      - USAGE

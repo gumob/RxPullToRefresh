@@ -1,0 +1,5 @@
+github "PGSSoft/AutoMate" "1.6.0"
+github "Quick/Nimble" "v7.3.1"
+github "Quick/Quick" "v1.3.2"
+github "ReactiveX/RxSwift" "4.4.0"
+github "RxSwiftCommunity/RxDataSources" "3.1.0"

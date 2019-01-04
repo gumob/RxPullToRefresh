@@ -1,0 +1,14 @@
+coverage_service: cobertura_xml
+xcodeproj: RxPullToRefresh.xcodeproj
+scheme: RxPullToRefresh
+source_directory: Sources/
+output_directory: Reports/coverage
+ignore:
+  - Sources/Debug.swift
+  - Tests/*
+  - UITests/*
+  - Example/*
+  - Carthage/*
+  - Pods/*
+  - Module/*
+  - Submodule/*

@@ -1,0 +1,12 @@
+#codecov:
+#  branch: master
+
+ignore:
+  - "Sources/Debug.swift"
+  - "Tests"
+  - "UITests"
+  - "Example"
+  - "Carthage"
+  - "Pods"
+  - "Module"
+  - "Submodule"

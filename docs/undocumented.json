@@ -1,0 +1,12 @@
+{
+  "warnings": [
+    {
+      "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/RxPullToRefreshDelegate+Rx.swift",
+      "line": 42,
+      "symbol": "Reactive.delegate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    }
+  ],
+  "source_directory": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources"
+}
