@@ -19,8 +19,7 @@ cache:
 env:
   global:
     - secure: IsSPmEYizg0SVZoWqO8JnSgCKlNSBLIFs+XZjOCjb12Z+YToMS3tmo+EYrmaKNJRMrvJEFyRlgyxlyEQGHc57eFGzZAjLGsiiIu++xY7AzDALC+CDG3w2daNF+pWXX58145Wj5CpOrkauF+DHUMYCQWa3g4JGoMmP001fjKlF+9TUF7K017Ae6awVu3YFJqvO2KuCEpe3J7b6Ii0hjUEnHMzHgK+ZFwGbc8QXz21AGO5YXT3+6zxaLB4TdEyazRC/QxaDBpmSE8k4RMeOXBTbwhpJhWbrDuGGJWw46yO006d7YdU8+fkf6hSBswN5YGbOga8dwRB4vVilJ6P8iiUV9QL4C1BxU8jFBkil563o5mbl6MZrEjXPQuvwyB9xSf6LGjYyVXrAVj6nIar+QcfwSIqn2520qYxrYo5CAaZ/9ozmRg4v4fbnA6m2fEW1lI7USQGKcByit6ZGxQQ6YwdS0mw83fvGotxptgc/by2e7b1O64i2BWEh/5fHt/B3+6j7HkzDHvMKoOgFoNKMbrtEit9R7Dnrdsgd0awVnQzY0EdWdmYGH1A9h9pHJhmEoQq2S1X2tOf1WC0y67dY1FIMMk+27dn7ZBTsmKKdQf/RCYNSxhzHFjyaMr5nBkqxf4UV73l0JMT6Nhi5KrSCIYnOUA9peEETXmo9oBssPuVHSk=
-#    - CODE_SIGNING_ALLOWED=NO
-#    - CODE_SIGNING_REQUIRED=NO
+    - CODE_SIGN_OPTION='CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED="NO" CODE_SIGN_ENTITLEMENTS="" CODE_SIGNING_ALLOWED="NO"'
 
 matrix:
   include:
@@ -66,7 +65,7 @@ before_script:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE build-for-testing test-without-building | xcpretty -c;
+    xcodebuild build-for-testing test-without-building $CODE_SIGN_OPTION -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
