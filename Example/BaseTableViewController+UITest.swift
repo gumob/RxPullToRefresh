@@ -180,6 +180,23 @@ extension BaseTableViewController {
                   })
                   .disposed(by: self.disposeBag)
         /* Rx - Accessibility */
+        self.tableView.rx.willDisplayCell
+                .subscribe(onNext: { [weak self] (evt: (cell: UITableViewCell, indexPath: IndexPath)) in
+                    self?.addAccessibility(cell: evt.cell, indexPath: evt.indexPath)
+                })
+                .disposed(by: self.disposeBag)
+        self.tableView.rx.didEndDisplayingCell
+                .subscribe(onNext: { [weak self] (evt: (cell: UITableViewCell, indexPath: IndexPath)) in
+                    self?.removeAccessibility(cell: evt.cell)
+                })
+                .disposed(by: self.disposeBag)
+        Observable.combineLatest(self.tableView.rx.contentOffset,
+                                 self.tableView.rx.contentInset,
+                                 self.tableView.rx.contentSize)
+                  .subscribe({ [weak self] (evt) in
+                      self?.updateAccessibility()
+                  })
+                  .disposed(by: self.disposeBag)
         Observable.combineLatest(self.tableView.rx.willDisplayCell,
                                  self.tableView.rx.didEndDisplayingCell,
                                  self.tableView.rx.contentOffset,
@@ -250,25 +267,23 @@ extension BaseTableViewController {
 //        self.envLabel.frame.size.width = self.envLabel.frame.size.width + 18
     }
 
+    func addAccessibility(cell: UITableViewCell, indexPath: IndexPath) {
+        cell.isAccessibilityElement = true
+        cell.accessibilityIdentifier = "Cell-\(indexPath.row)"
+    }
+
+    func removeAccessibility(cell: UITableViewCell) {
+        cell.isAccessibilityElement = false
+        cell.accessibilityIdentifier = nil
+        cell.accessibilityLabel = nil
+    }
+
     func updateAccessibility() {
         guard self.tableView.visibleCells.count > 0 else { return }
-        let visibleRows: [Int] = self.tableView.visibleCells
-                .filter {
-                    self.tableView.indexPath(for: $0) != nil
-                }.map {
-                    self.tableView.indexPath(for: $0)!.row
-                }
-        for row in 0..<self.tableView.numberOfRows(inSection: 0) {
-            guard let cell: UITableViewCell = self.tableView.cellForRow(at: IndexPath(row: row, section: 0)),
-                  let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { continue }
-            if visibleRows.contains(indexPath.row) {
-                cell.isAccessibilityElement = true
-                cell.accessibilityIdentifier = "Cell-\(indexPath.row)"
-            } else {
-                cell.isAccessibilityElement = false
-                cell.accessibilityIdentifier = nil
-                cell.accessibilityLabel = nil
-            }
+        for cell in self.tableView.visibleCells {
+            guard let indexPath: IndexPath = self.tableView.indexPath(for: cell) else { continue }
+            cell.isAccessibilityElement = true
+            cell.accessibilityIdentifier = "Cell-\(indexPath.row)"
         }
     }
 }
@@ -282,7 +297,7 @@ class DebugButton: UIButton {
 
     init(title: String) {
         self.title = title
-        super.init(frame: CGRect(x: 0, y: 0, width: 96, height: 18))
+        super.init(frame: CGRect(x: 0, y: 0, width: 82, height: 16))
         self.setTitle(title, for: .normal)
         self.setTitleColor(.darkText, for: .normal)
         self.backgroundColor = UIColor.white.withAlphaComponent(0.8)
@@ -290,7 +305,7 @@ class DebugButton: UIButton {
         self.layer.cornerRadius = 4
         self.layer.borderColor = UIColor.lightGray.cgColor
         self.layer.borderWidth = 1 / UIScreen.main.scale
-        self.titleLabel?.font = UIFont.systemFont(ofSize: 10,
+        self.titleLabel?.font = UIFont.systemFont(ofSize: 7,
                                                   weight: .regular)
     }
 
