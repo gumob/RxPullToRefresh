@@ -22,10 +22,10 @@ env:
 
 matrix:
   include:
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.1"   DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4"   DEVICE="iPhone 7 Plus"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3.1" DEVICE="iPhone 6"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"    DEVICE="iPhone 5s"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 12.1" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPhone 7 Plus"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3" DEVICE="iPhone 6"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"  DEVICE="iPhone 5s"
 #    - env: CARTHAGE_TEST="YES"
     - env: SWIFT_LINT="YES"
     - env: POD_LINT="YES"
