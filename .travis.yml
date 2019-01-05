@@ -2,6 +2,9 @@ language: objective-c
 os: osx
 osx_image: xcode10.1
 
+xcode_project: RxPullToRefresh.xcodeproj
+xcode_scheme: RxPullToRefresh
+
 branches:
   only:
     - master
@@ -12,29 +15,27 @@ cache:
   directories:
     - Pods
     - Carthage
-#    - $HOME/Library/Caches/org.carthage.CarthageKit/dependencies
 
 env:
   global:
     - secure: IsSPmEYizg0SVZoWqO8JnSgCKlNSBLIFs+XZjOCjb12Z+YToMS3tmo+EYrmaKNJRMrvJEFyRlgyxlyEQGHc57eFGzZAjLGsiiIu++xY7AzDALC+CDG3w2daNF+pWXX58145Wj5CpOrkauF+DHUMYCQWa3g4JGoMmP001fjKlF+9TUF7K017Ae6awVu3YFJqvO2KuCEpe3J7b6Ii0hjUEnHMzHgK+ZFwGbc8QXz21AGO5YXT3+6zxaLB4TdEyazRC/QxaDBpmSE8k4RMeOXBTbwhpJhWbrDuGGJWw46yO006d7YdU8+fkf6hSBswN5YGbOga8dwRB4vVilJ6P8iiUV9QL4C1BxU8jFBkil563o5mbl6MZrEjXPQuvwyB9xSf6LGjYyVXrAVj6nIar+QcfwSIqn2520qYxrYo5CAaZ/9ozmRg4v4fbnA6m2fEW1lI7USQGKcByit6ZGxQQ6YwdS0mw83fvGotxptgc/by2e7b1O64i2BWEh/5fHt/B3+6j7HkzDHvMKoOgFoNKMbrtEit9R7Dnrdsgd0awVnQzY0EdWdmYGH1A9h9pHJhmEoQq2S1X2tOf1WC0y67dY1FIMMk+27dn7ZBTsmKKdQf/RCYNSxhzHFjyaMr5nBkqxf4UV73l0JMT6Nhi5KrSCIYnOUA9peEETXmo9oBssPuVHSk=
-    - XCODEPROJ="RxPullToRefresh.xcodeproj"
-    - SCHEME_IOS="RxPullToRefresh"
 
 matrix:
   include:
-#    - env: TEST="YES" CARTHAGE_TEST="YES"
+#    - env: CARTHAGE_TEST="YES"
 #    - env: POD_LINT="YES"
 #    - env: SWIFT_LINT="YES"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="12.1" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="11.4" DEVICE="iPhone 7 Plus"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="10.3.1" DEVICE="iPhone 6"
-    - env: TEST="YES" XCODE_TEST="YES" SCHEME="$SCHEME_IOS" OS_VER="9.3" DEVICE="iPhone 5s"
+    - env: XCODE_TEST="YES" DEV_VER="12.1"   DEV_NAME="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: XCODE_TEST="YES" DEV_VER="11.4"   DEV_NAME="iPhone 7 Plus"
+    - env: XCODE_TEST="YES" DEV_VER="10.3.1" DEV_NAME="iPhone 6"
+    - env: XCODE_TEST="YES" DEV_VER="9.3"    DEV_NAME="iPhone 5s"
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
     gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
     fi
-  - if [ "$TEST" == "YES" ]; then
+#  - if [ "$TEST" == "YES" ]; then
+  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
     brew update;
     brew outdated carthage || brew upgrade carthage;
@@ -47,18 +48,16 @@ before_install:
 #  - xcodebuild -list;
 
 install:
-  - if [ "$WIFT_LINT" == "YES" ]; then
+  - if [ "$SWIFT_LINT" == "YES" ]; then
     ./install-swiftlint.sh;
     fi
 
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$XCODEPROJ" -scheme "$SCHEME" -destination "platform=iOS Simulator,OS=$OS_VER,name=$DEVICE" -enableCodeCoverage $COVERAGE | xcpretty -c;
-    elif [ "$XCODE_TEST" == "NO" ]; then
-    xcodebuild clean build -project "$XCODEPROJ" -scheme "$SCHEME" -destination "platform=iOS Simulator,OS=$OS_VER,name=$DEVICE" -configuration Release | xcpretty -c;
+    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "platform=iOS Simulator,OS=$OS_VER,name=$DEVICE" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
-  - if [ "CARTHAGE_TEST" == "YES" ]; then
+  - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
@@ -75,7 +74,7 @@ after_success:
     fi
 
 after_failure:
-  - if [ "CARTHAGE_TEST" == "YES" ]; then
+  - if [ "$CARTHAGE_TEST" == "YES" ]; then
     cat $TMPDIR/carthage-*.log | true
     cat /var/log/system.log
     fi
