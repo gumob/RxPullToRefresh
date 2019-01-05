@@ -67,7 +67,8 @@ script:
     echo $TRAVIS_XCODE_PROJECT
     echo $TRAVIS_XCODE_SCHEME
     echo $DESTINATION_ID
-    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" | xcpretty -c;
+    echo $COVERAGE
+    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
