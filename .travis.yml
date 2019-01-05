@@ -64,6 +64,9 @@ before_script:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
+    echo $TRAVIS_XCODE_PROJECT
+    echo $TRAVIS_XCODE_SCHEME
+    echo $DESTINATION_ID
     xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
