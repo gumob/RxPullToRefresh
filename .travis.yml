@@ -76,7 +76,6 @@ script:
     carthage build --no-skip-current --platform iOS;
     fi
   - if [ "$POD_LINT" == "YES" ]; then
-    pod repo update;
     pod lib lint;
     fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
