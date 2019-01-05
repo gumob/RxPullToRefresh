@@ -19,7 +19,7 @@ class DefaultSpec: QuickSpec {
             SpecCase.caseDrag1Prepend1Append1Force(type: .default, orientation: .portrait, shouldFailLoad: true),
             SpecCase.caseDrag1Prepend1Append1Force(type: .default, orientation: .portrait, shouldFailLoad: false),
 
-            SpecCase.caseDrag1Prepend1Append1(type: .default, orientation: .portrait, shouldFailLoad: true),
+//            SpecCase.caseDrag1Prepend1Append1(type: .default, orientation: .portrait, shouldFailLoad: true),
             SpecCase.caseDrag1Prepend1Append1(type: .default, orientation: .portrait, shouldFailLoad: false),
             SpecCase.caseDrag1Prepend1Append0(type: .default, orientation: .portrait, shouldFailLoad: false),
             SpecCase.caseDrag1Prepend0Append1(type: .default, orientation: .portrait, shouldFailLoad: false),
