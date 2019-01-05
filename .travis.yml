@@ -26,15 +26,15 @@ matrix:
 #    - env: POD_LINT="YES"
 #    - env: SWIFT_LINT="YES"
 
-#    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-#    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=11.4,name=iPhone 7 Plus"
-#    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 6"
-#    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=9.3,name=iPhone 5s"
+    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=12.1,name=iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=11.4,name=iPhone 7 Plus"
+    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 6"
+    - env: XCODE_TEST="YES" DEST="platform=iOS Simulator,OS=9.3,name=iPhone 5s"
 
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.1"   DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4"   DEVICE="iPhone X"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3.1" DEVICE="iPhone 7 Plus"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"    DEVICE="iPhone 6s"
+#    - env: XCODE_TEST="YES" RUNTIME="iOS 12.1"   DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+#    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4"   DEVICE="iPhone X"
+#    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3.1" DEVICE="iPhone 7 Plus"
+#    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"    DEVICE="iPhone 6s"
 
 before_install:
   - if [ "$POD_LINT" == "YES" ]; then
@@ -70,7 +70,7 @@ before_script:
 script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" | xcpretty -c;
+    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$DEST" | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
