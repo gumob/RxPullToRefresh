@@ -37,8 +37,8 @@ before_install:
 #  - if [ "$TEST" == "YES" ]; then
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
-    brew update;
-    brew outdated carthage || brew upgrade carthage;
+    brew update --quiet;
+    brew outdated carthage || brew upgrade carthage --quiet;
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
 #  - swift -version;
