@@ -39,8 +39,8 @@ before_install:
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
-    brew update --quiet;
-    brew outdated carthage || brew upgrade carthage --quiet;
+    brew update;
+    brew outdated carthage || brew upgrade carthage;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
