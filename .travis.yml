@@ -60,10 +60,10 @@ install:
     fi
 
 before_script:
-  - DEVICE_ID=com.apple.CoreSimulator.SimDeviceType.$(echo $DEVICE | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g")
-  - RUNTIME_ID=com.apple.CoreSimulator.SimRuntime.$(echo $RUNTIME | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g")
-  - DESTINATION_ID=$(xcrun simctl create Travis $DEVICE_ID $RUNTIME_ID)
-  - xcrun simctl boot $DESTINATION_ID
+  - DEVICE_ID=com.apple.CoreSimulator.SimDeviceType.$(echo $DEVICE | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
+  - RUNTIME_ID=com.apple.CoreSimulator.SimRuntime.$(echo $RUNTIME | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
+  - DESTINATION_ID=$(xcrun simctl create Travis $DEVICE_ID $RUNTIME_ID);
+  - xcrun simctl boot $DESTINATION_ID;
 
 script:
   - set -o pipefail;
