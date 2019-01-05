@@ -69,7 +69,7 @@ script:
   - set -o pipefail;
   - if [ "$XCODE_TEST" == "YES" ]; then
 #    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$DEST" -enableCodeCoverage $COVERAGE | xcpretty -c;
-    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" | xcpretty -c
+    xcodebuild clean build-for-testing test-without-building -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
