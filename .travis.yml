@@ -40,8 +40,10 @@ before_install:
   - if [ "$POD_LINT" == "YES" ]; then
     gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
     fi
-  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
+  - if [ "$XCODE_TEST" == "YES" ]; then
     gem install xcpretty -N --no-ri --no-rdoc --quiet;
+    fi
+  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     brew update --quiet;
     brew outdated carthage || brew upgrade carthage --quiet;
     fi
