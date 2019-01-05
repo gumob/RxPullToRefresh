@@ -8,7 +8,7 @@ xcode_scheme: RxPullToRefresh
 branches:
   only:
     - master
-    - develop
+#    - develop
 #    - "/^v?[0-9\\.]+/"
 
 cache:
