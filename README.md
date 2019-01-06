@@ -96,19 +96,15 @@ self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
 
 <small>⚠️ To finish loading, you need to explicitly call `UIScrollView.p2r.endRefreshing(at:)`, `UIScrollView.p2r.endAllRefreshing()`, or `RxPullToRefresh.endRefreshing()`.</small>
 
-```
+```swift
 self.viewModel.prepend()
               .subscribe(onSuccess: { [weak self] in
-
                   // Successfully loaded, collapse refresh view immediately
                   self?.tableView.p2r.endRefreshing(at: .top)
-
               }, onError: { [weak self] (_: Error) in
-
                   // Failed to load, show error
                   self?.tableView.p2r.failRefreshing(at: .top)
               })
-
               .disposed(by: self.disposeBag)
 ```
 
@@ -152,7 +148,6 @@ $ carthage update --platform iOS
 2. Open `RxPullToRefresh.xcodeproj`
 3. Select the scheme `RxPullToRefreshExample` from the drop-down menu in the upper left of the Xcode window
 4. Press ⌘R
-
 
 
 ## Copyright

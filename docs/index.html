@@ -193,19 +193,15 @@
 <h5 id='load-and-append-contents-to-header' class='heading'>Load and append contents to header</h5>
 
 <p><small>⚠️ To finish loading, you need to explicitly call <code>UIScrollView.p2r.endRefreshing(at:)</code>, <code>UIScrollView.p2r.endAllRefreshing()</code>, or <code><a href="Classes/RxPullToRefresh.html#/s:15RxPullToRefreshAAC13endRefreshingyyF">RxPullToRefresh.endRefreshing()</a></code>.</small></p>
-<pre class="highlight plaintext"><code>self.viewModel.prepend()
-              .subscribe(onSuccess: { [weak self] in
-
-                  // Successfully loaded, collapse refresh view immediately
-                  self?.tableView.p2r.endRefreshing(at: .top)
-
-              }, onError: { [weak self] (_: Error) in
-
-                  // Failed to load, show error
-                  self?.tableView.p2r.failRefreshing(at: .top)
-              })
-
-              .disposed(by: self.disposeBag)
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="nf">prepend</span><span class="p">()</span>
+              <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onSuccess</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="k">in</span>
+                  <span class="c1">// Successfully loaded, collapse refresh view immediately</span>
+                  <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">p2r</span><span class="o">.</span><span class="nf">endRefreshing</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+              <span class="p">},</span> <span class="nv">onError</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">_</span><span class="p">:</span> <span class="kt">Error</span><span class="p">)</span> <span class="k">in</span>
+                  <span class="c1">// Failed to load, show error</span>
+                  <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">p2r</span><span class="o">.</span><span class="nf">failRefreshing</span><span class="p">(</span><span class="nv">at</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+              <span class="p">})</span>
+              <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
 </code></pre>
 <h5 id='disable-refreshing-by-binding-boolean-value-to-canloadmore-property' class='heading'>Disable refreshing by binding Boolean value to canLoadMore property</h5>
 <pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="n">canPrepend</span>
