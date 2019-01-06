@@ -10,6 +10,17 @@
 # RxPullToRefresh
 A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.
 
+<img src="Metadata/screenshot-animation.gif" alt="drawing" width="480" style="width:40%;"/>
+
+## Features
+
+- Support UIScrollView, UITableView, and UICollectionView
+- Customizable refresh view
+- Customizable animaton options
+- Configurable option whether to load while dragging or to load you after a finger
+- Error handling
+- Support RxSwift/RxCocoa
+
 ## Requirements
 
 - iOS 9.0 or later
