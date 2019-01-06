@@ -108,7 +108,48 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='usage' class='heading'>Usage</h1>
+            <h2 id='usage' class='heading'>Usage</h2>
+
+<p>Read the <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html">API reference</a> and the <a href="https://gumob.github.io/RxPullToRefresh/usage.html">USAGE.md</a> for detailed information.</p>
+<h3 id='basic-usage' class='heading'>Basic Usage</h3>
+<h5 id='import-frameworks-to-your-project' class='heading'>Import frameworks to your project</h5>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">RxSwift</span>
+<span class="kd">import</span> <span class="kt">RxCocoa</span>
+<span class="kd">import</span> <span class="kt">RxPullToRefresh</span>
+</code></pre>
+<h5 id='add-rxpulltorefresh-to-header' class='heading'>Add RxPullToRefresh to header</h5>
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span> <span class="o">=</span> <span class="kt">RxPullToRefresh</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+<span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">action</span>
+        <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">RxPullToRefreshState</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">scroll</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="nf">load</span><span class="p">()</span>
+            <span class="k">default</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
+<span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">addPullToRefresh</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="p">)</span>
+</code></pre>
+<h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
+<h5 id='about-the-example-project' class='heading'>About the example project</h5>
+
+<p>RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check <a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/%22">example sources</a> for advanced usage.</p>
+
+<ul>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefresh</a>: A class inheriting from RxPullToRefresh.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefreshView</a>: A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">BaseTableViewController</a>: A view controller that conforms to MVVM architecture.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">CustomTableViewController</a>: A view controller that creates a CustomPullToRefresh instance.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift%22">TableViewModel</a>: A view model that manipulates data sources.</li>
+</ul>
+<h5 id='build-the-example-app' class='heading'>Build the example app</h5>
+
+<p>1) Update Carthage frameworks</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>carthage update --platform iOS
+</code></pre>
+
+<p>2) Open <code>RxPullToRefresh.xcodeproj</code>
+3) Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window
+4) Press ⌘R</p>
 
           </div>
         </section>

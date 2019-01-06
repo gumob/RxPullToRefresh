@@ -109,14 +109,28 @@
           <div class="section-content">
             
             <p><a href="https://github.com/gumob/RxPullToRefresh"><img src="https://img.shields.io/badge/Carthage-compatible-4BC51D.svg" alt="Carthage compatible"></a>
+<a href="http://cocoadocs.org/docsets/RxPullToRefresh"><img src="http://img.shields.io/cocoapods/v/RxPullToRefresh.svg" alt="Version"></a>
+<a href="http://cocoadocs.org/docsets/RxPullToRefresh"><img src="http://img.shields.io/cocoapods/p/RxPullToRefresh.svg" alt="Platform"></a>
 <a href="https://travis-ci.com/gumob/RxPullToRefresh"><img src="https://travis-ci.com/gumob/RxPullToRefresh.svg?branch=master" alt="Build Status"></a>
 <a href="https://codecov.io/gh/gumob/RxPullToRefresh"><img src="https://codecov.io/gh/gumob/RxPullToRefresh/branch/master/graph/badge.svg" alt="codecov"></a>
-<a href="https://github.com/gumob/RxPullToRefresh"><img src="https://img.shields.io/badge/platform-ios%20-lightgrey.svg" alt="Platform"></a>
+<a href="https://houndci.com"><img src="https://img.shields.io/badge/Reviewed_by-Hound-8E64B0.svg" alt="Reviewed by Hound"></a>
 <img src="https://img.shields.io/badge/Language-Swift%204.2-orange.svg" alt="Language">
 <img src="https://img.shields.io/packagist/l/doctrine/orm.svg" alt="Packagist"></p>
 <h1 id='rxpulltorefresh' class='heading'>RxPullToRefresh</h1>
 
 <p>A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.</p>
+
+<p><img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/Metadata/screenshot-animation.gif" alt="drawing" width="480" style="width:40%;"/></p>
+<h2 id='features' class='heading'>Features</h2>
+
+<ul>
+<li>Support UIScrollView, UITableView, and UICollectionView</li>
+<li>Customizable refresh view</li>
+<li>Customizable animaton options</li>
+<li>Configurable option whether to load while dragging or to load you after a finger</li>
+<li>Error handling</li>
+<li>Support RxSwift/RxCocoa</li>
+</ul>
 <h2 id='requirements' class='heading'>Requirements</h2>
 
 <ul>
@@ -130,9 +144,9 @@
 <pre class="highlight plaintext"><code>github "gumob/RxPullToRefresh"
 </code></pre>
 
-<p>Do not forget to include RxSwift.framework. Otherwise it will fail to build the application.<br/></p>
+<p>Do not forget to include RxSwift.framework and RxCocoa.framework. Otherwise it will fail to build the application.<br/></p>
 
-<p><img src="Metadata/carthage-xcode-config.jpg" alt="drawing" width="480" style="width:100%; max-width: 480px;"/></p>
+<p><img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/carthage-xcode-config.jpg" alt="drawing" width="480" style="width:100%; max-width: 480px;"/></p>
 <h3 id='cocoapods' class='heading'>CocoaPods</h3>
 
 <p>To integrate RxPullToRefresh into your project, add the following to your <code>Podfile</code>.</p>
@@ -143,7 +157,46 @@
 </code></pre>
 <h2 id='usage' class='heading'>Usage</h2>
 
-<p>Read the <a href="https://gumob.github.io/RxPullToRefresh/usage.html">usage</a> and the <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html">API reference</a> for detailed information.</p>
+<p>Read the <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html">API reference</a> and the <a href="https://gumob.github.io/RxPullToRefresh/usage.html">USAGE.md</a> for detailed information.</p>
+<h3 id='basic-usage' class='heading'>Basic Usage</h3>
+<h5 id='import-frameworks-to-your-project' class='heading'>Import frameworks to your project</h5>
+<pre class="highlight swift"><code><span class="kd">import</span> <span class="kt">RxSwift</span>
+<span class="kd">import</span> <span class="kt">RxCocoa</span>
+<span class="kd">import</span> <span class="kt">RxPullToRefresh</span>
+</code></pre>
+<h5 id='add-rxpulltorefresh-to-header' class='heading'>Add RxPullToRefresh to header</h5>
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span> <span class="o">=</span> <span class="kt">RxPullToRefresh</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+<span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">action</span>
+        <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">RxPullToRefreshState</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">scroll</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="nf">load</span><span class="p">()</span>
+            <span class="k">default</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="p">}</span>
+        <span class="p">})</span>
+        <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
+<span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">addPullToRefresh</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="p">)</span>
+</code></pre>
+<h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
+<h5 id='about-the-example-project' class='heading'>About the example project</h5>
+
+<p>RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check <a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/%22">example sources</a> for advanced usage.</p>
+
+<ul>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefresh</a>: A class inheriting from RxPullToRefresh.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefreshView</a>: A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">BaseTableViewController</a>: A view controller that conforms to MVVM architecture.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">CustomTableViewController</a>: A view controller that creates a CustomPullToRefresh instance.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift%22">TableViewModel</a>: A view model that manipulates data sources.</li>
+</ul>
+<h5 id='build-the-example-app' class='heading'>Build the example app</h5>
+
+<p>1) Update Carthage frameworks</p>
+<pre class="highlight shell"><code><span class="gp">$ </span>carthage update --platform iOS
+</code></pre>
+
+<p>2) Open <code>RxPullToRefresh.xcodeproj</code>
+3) Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window
+4) Press ⌘R</p>
 <h2 id='copyright' class='heading'>Copyright</h2>
 
 <p>RxPullToRefresh is released under MIT license, which means you can modify it, redistribute it or use it however you like.</p>
