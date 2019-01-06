@@ -120,7 +120,7 @@
 
 <p>A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.</p>
 
-<p><img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="480" style="width:40%;"/></p>
+<p><img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="40%" style="width:40%;"/></p>
 <h2 id='features' class='heading'>Features</h2>
 
 <ul>
@@ -179,24 +179,26 @@
 <h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
 <h5 id='about-the-example-project' class='heading'>About the example project</h5>
 
-<p>RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check <a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/%22">example sources</a> for advanced usage.</p>
+<p>RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check <a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/%22">example sources</a> for advanced usage.</p>
 
 <ul>
-<li><a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/CustomRefresh.swift%22">CustomRefresh</a>: A class inheriting from RxPullToRefresh.</li>
-<li><a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/CustomRefresh.swift%22">CustomRefreshView</a>: A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.</li>
-<li><a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/TableViewController.swift%22">BaseTableViewController</a>: A view controller that conforms to MVVM architecture.</li>
-<li><a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/TableViewController.swift%22">CustomTableViewController</a>: A view controller that creates a CustomPullToRefresh instance.</li>
-<li><a href="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Example/TableViewModel.swift%22">TableViewModel</a>: A view model that manipulates data sources.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefresh</a>: A class inheriting from RxPullToRefresh.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift%22">CustomRefreshView</a>: A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">BaseTableViewController</a>: A view controller that conforms to MVVM architecture.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift%22">CustomTableViewController</a>: A view controller that creates a CustomPullToRefresh instance.</li>
+<li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift%22">TableViewModel</a>: A view model that manipulates data sources.</li>
 </ul>
 <h5 id='build-the-example-app' class='heading'>Build the example app</h5>
 
-<p>1) Update Carthage frameworks</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>carthage update --platform iOS
-</code></pre>
-
-<p>2) Open <code>RxPullToRefresh.xcodeproj</code>
-3) Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window
-4) Press ⌘R</p>
+<ol>
+<li>Update Carthage frameworks
+<code>bash
+$ carthage update --platform iOS
+</code></li>
+<li>Open <code>RxPullToRefresh.xcodeproj</code></li>
+<li>Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window</li>
+<li>Press ⌘R</li>
+</ol>
 <h2 id='copyright' class='heading'>Copyright</h2>
 
 <p>RxPullToRefresh is released under MIT license, which means you can modify it, redistribute it or use it however you like.</p>
