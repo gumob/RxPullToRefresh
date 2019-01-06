@@ -40,7 +40,7 @@ open class RxPullToRefresh: NSObject {
     /** A Boolean value indicating whether a RxPullToRefresh object is enabled. If set to false, a RxPullToRefresh object will not be displayed regardless of whether a data source exists or not. */
     @objc dynamic public var isEnabled: Bool = false {
         willSet {
-            self.isEnabled = (self.scrollView?.canBeEnabled(at: self.position) ?? false) ? newValue : false
+            self.isEnabled = (self.scrollView?.p2r.canBeEnabled(at: self.position) ?? false) ? newValue : false
         }
         didSet {
             self.refreshView.isHidden = !isEnabled && !self.isVisible
@@ -54,14 +54,14 @@ open class RxPullToRefresh: NSObject {
     @objc dynamic internal var isVisible: Bool {
         guard let sv: UIScrollView = self.scrollView else { return false }
         switch self.position {
-        case .top:    return sv.relativeContentOffset(for: .top).y < 0
-        case .bottom: return sv.relativeContentOffset(for: .bottom).y > 0
+        case .top:    return sv.p2r.relativeContentOffset(for: .top).y < 0
+        case .bottom: return sv.p2r.relativeContentOffset(for: .bottom).y > 0
         }
     }
     /** A Boolean value indicating whether an opposite refresh view is loading. */
     internal var isOppositeLoading: Bool {
         guard let sv: UIScrollView = self.scrollView,
-              let opposite: RxPullToRefresh = sv.getPullToRefresh(at: self.position.opposite) else { return false }
+              let opposite: RxPullToRefresh = sv.p2r.getPullToRefresh(at: self.position.opposite) else { return false }
         return opposite.state != .initial
     }
 
@@ -110,7 +110,7 @@ open class RxPullToRefresh: NSObject {
         didSet {
             guard let sv: UIScrollView = self.scrollView else { return }
             self.scrollViewInitialInsets = sv.contentInset
-            self.scrollViewInitialEffectiveInsets = sv.effectiveContentInset
+            self.scrollViewInitialEffectiveInsets = sv.p2r.effectiveContentInset
             self.startObservingScrollView()
         }
     }
@@ -179,7 +179,7 @@ open class RxPullToRefresh: NSObject {
     deinit {
         self.debug?.log(true, .simple, "🍄")
         self.stopObservingScrollView()
-        self.scrollView?.removePullToRefresh(at: self.position)
+        self.scrollView?.p2r.removePullToRefresh(at: self.position)
         self.scrollView = nil
         self.refreshView = nil
         self.kvoDisposeBag = nil

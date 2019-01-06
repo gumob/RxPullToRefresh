@@ -131,7 +131,7 @@ extension BaseTableViewController {
                 .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
-                    self.tableView.endAllRefreshing()
+                    self.tableView.p2r.endAllRefreshing()
                 })
                 .disposed(by: self.disposeBag)
         self.reloadButton = DebugButton(title: "Reload")

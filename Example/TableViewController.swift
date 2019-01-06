@@ -148,7 +148,7 @@ extension BaseTableViewController {
                 .asDriver()
                 .drive(self.topPullToRefresh.rx.canLoadMore)
                 .disposed(by: self.disposeBag)
-        self.tableView.addPullToRefresh(self.topPullToRefresh)
+        self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
 
         /*
          * Initialize RxPullToRefresh at bottom
@@ -165,7 +165,7 @@ extension BaseTableViewController {
                 .asDriver()
                 .drive(self.bottomPullToRefresh.rx.canLoadMore)
                 .disposed(by: self.disposeBag)
-        self.tableView.addPullToRefresh(self.bottomPullToRefresh)
+        self.tableView.p2r.addPullToRefresh(self.bottomPullToRefresh)
 
         /*
          * Initialize UI controls for debugging
@@ -194,8 +194,8 @@ extension BaseTableViewController {
         super.viewDidDisappear(animated)
         self.navigationController?.setToolbarHidden(true, animated: false)
         self.debugView.removeFromSuperview()
-        self.tableView.endAllRefreshing()
-        self.tableView.removeAllPullToRefresh()
+        self.tableView.p2r.endAllRefreshing()
+        self.tableView.p2r.removeAllPullToRefresh()
     }
 }
 
@@ -209,10 +209,9 @@ extension BaseTableViewController {
                               canAppend: self.env.canAppend)
                       .debug("🔶🔃🔃🔃🔃")
                       .subscribe(onSuccess: { [weak self] in
-                          self?.tableView.endAllRefreshing()
-
+                          self?.tableView.p2r.endAllRefreshing()
                       }, onError: { [weak self] (_: Error) in
-                          self?.tableView.endAllRefreshing()
+                          self?.tableView.p2r.endAllRefreshing()
                       })
                       .disposed(by: self.disposeBag)
     }
@@ -222,9 +221,9 @@ extension BaseTableViewController {
         self.viewModel.prepend()
                       .debug("🔺➕➕➕➕")
                       .subscribe(onSuccess: { [weak self] in
-                          self?.tableView.endRefreshing(at: .top)
+                          self?.tableView.p2r.endRefreshing(at: .top)
                       }, onError: { [weak self] (_: Error) in
-                          self?.tableView.failRefreshing(at: .top)
+                          self?.tableView.p2r.failRefreshing(at: .top)
                       })
                       .disposed(by: self.disposeBag)
     }
@@ -234,20 +233,20 @@ extension BaseTableViewController {
         self.viewModel.append()
                       .debug("🔽➕➕➕➕")
                       .subscribe(onSuccess: { [weak self] in
-                          self?.tableView.endRefreshing(at: .bottom)
+                          self?.tableView.p2r.endRefreshing(at: .bottom)
                       }, onError: { [weak self] (_: Error) in
-                          self?.tableView.failRefreshing(at: .bottom)
+                          self?.tableView.p2r.failRefreshing(at: .bottom)
                       })
                       .disposed(by: self.disposeBag)
     }
 
     func forcePrepend() {
         print("🔺 forcePrepend")
-        self.tableView.startRefreshing(at: .top)
+        self.tableView.p2r.startRefreshing(at: .top)
     }
 
     func forceAppend() {
         print("🔽 forceAppend")
-        self.tableView.startRefreshing(at: .bottom)
+        self.tableView.p2r.startRefreshing(at: .bottom)
     }
 }

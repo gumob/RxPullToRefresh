@@ -31,7 +31,7 @@ public extension RxPullToRefresh {
                     y: -(scrollViewInitialEffectiveInsets.top)
             )
             case .bottom:return sv.contentOffset.replaced(
-                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.scrollableHeight
+                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.p2r.scrollableHeight
             )
             }
         }()
@@ -41,7 +41,7 @@ public extension RxPullToRefresh {
                     y: -(self.scrollViewInitialEffectiveInsets.top + refreshView.frame.height)
             )
             case .bottom: return sv.contentOffset.replaced(
-                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.scrollableHeight + refreshView.frame.height
+                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.p2r.scrollableHeight + refreshView.frame.height
             )
             }
         }()
@@ -155,7 +155,7 @@ public extension RxPullToRefresh {
                     y: -(scrollViewInitialEffectiveInsets.top)
             )
             case .bottom:return sv.contentOffset.replaced(
-                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.scrollableHeight
+                    y: self.scrollViewInitialEffectiveInsets.bottom + sv.p2r.scrollableHeight
             )
             }
         }()

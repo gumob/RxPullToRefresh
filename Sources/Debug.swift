@@ -114,17 +114,17 @@ internal class Debug {
         case .info:
             out += defaultMsg + br
             out += position + " " + Debug.format(name: "scrollView.contentInset", prop: sv.contentInset.debug) + br
-            out += position + " " + Debug.format(name: "scrollView.effectiveContentInset", prop: sv.effectiveContentInset.debug) + br
+            out += position + " " + Debug.format(name: "scrollView.effectiveContentInset", prop: sv.p2r.effectiveContentInset.debug) + br
             out += position + " " + Debug.format(name: "scrollView.contentOffset", prop: sv.contentOffset.debug) + br
-            out += position + " " + Debug.format(name: "normalizedContentOffset", prop: sv.normalizedContentOffset.debug) + br
-            out += position + " " + Debug.format(name: "relativeContentOffset", prop: sv.relativeContentOffset(for: obj.position)) + br
+            out += position + " " + Debug.format(name: "normalizedContentOffset", prop: sv.p2r.normalizedContentOffset.debug) + br
+            out += position + " " + Debug.format(name: "relativeContentOffset", prop: sv.p2r.relativeContentOffset(for: obj.position)) + br
         case .verbose:
             out += defaultMsg + br
             out += br
             out += position + " " + Debug.format(name: "UIScreen.main.bounds", prop: (UIScreen.main.bounds).debug) + br
             out += position + " " + Debug.format(name: "scrollView.frame", prop: (sv.frame).debug) + br
             out += position + " " + Debug.format(name: "scrollView.contentSize", prop: sv.contentSize.debug) + br
-            out += position + " " + Debug.format(name: "scrollView.scrollableHeight", prop: sv.scrollableHeight) + br
+            out += position + " " + Debug.format(name: "scrollView.scrollableHeight", prop: sv.p2r.scrollableHeight) + br
             out += position + " " + Debug.format(name: "refreshView.frame.size", prop: (obj.refreshView.frame.size).debug) + br
             out += br
             out += position + " " + Debug.format(name: "scrollViewInitialInsets", prop: obj.scrollViewInitialInsets.debug) + br
@@ -132,11 +132,11 @@ internal class Debug {
             out += position + " " + Debug.format(name: "scrollViewLoadingInsets", prop: obj.scrollViewLoadingInsets.debug) + br
             out += br
             out += position + " " + Debug.format(name: "scrollView.contentInset", prop: sv.contentInset.debug) + br
-            out += position + " " + Debug.format(name: "scrollView.effectiveContentInset", prop: sv.effectiveContentInset.debug) + br
+            out += position + " " + Debug.format(name: "scrollView.effectiveContentInset", prop: sv.p2r.effectiveContentInset.debug) + br
             out += br
             out += position + " " + Debug.format(name: "scrollView.contentOffset", prop: sv.contentOffset.debug) + br
-            out += position + " " + Debug.format(name: "normalizedContentOffset", prop: sv.normalizedContentOffset.debug) + br
-            out += position + " " + Debug.format(name: "relativeContentOffset", prop: sv.relativeContentOffset(for: obj.position)) + br
+            out += position + " " + Debug.format(name: "normalizedContentOffset", prop: sv.p2r.normalizedContentOffset.debug) + br
+            out += position + " " + Debug.format(name: "relativeContentOffset", prop: sv.p2r.relativeContentOffset(for: obj.position)) + br
         }
         if let messages: [String] = messages {
             messages.forEach {

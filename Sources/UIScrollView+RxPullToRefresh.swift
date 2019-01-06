@@ -11,10 +11,34 @@ import UIKit
 import ObjectiveC
 
 /**
+  An extension proxy for RxPullToRefresh.
+ */
+public final class RxPullToRefreshExtensionProxy<Base> {
+    let base: Base
+
+    public init(_ base: Base) { self.base = base }
+}
+
+public protocol RxPullToRefreshCompatible {
+    associatedtype CompatibleType
+    var p2r: CompatibleType { get }
+}
+
+extension RxPullToRefreshCompatible {
+    public var p2r: RxPullToRefreshExtensionProxy<Self> {
+        return RxPullToRefreshExtensionProxy(self)
+    }
+}
+
+extension UIScrollView: RxPullToRefreshCompatible {
+    typealias UIScrollView = CompatibleType
+    public var p2r: CompatibleType { return self }
+}
+
+/**
   An extension UIScrollView to manage RxPullToRefresh objects.
  */
-public extension UIScrollView {
-
+internal extension UIScrollView {
     fileprivate struct Keys {
         static var topPullToRefresh: String = "com.gumob.RxPullToRefresh.topPullToRefresh"
         static var bottomPullToRefresh: String = "com.gumob.RxPullToRefresh.bottomPullToRefreshKey"
@@ -23,7 +47,7 @@ public extension UIScrollView {
     /**
      A RxPullToRefresh object placed at the top.
      */
-    private(set) var topPullToRefresh: RxPullToRefresh? {
+    var topPullToRefresh: RxPullToRefresh? {
         get { return objc_getAssociatedObject(self, &Keys.topPullToRefresh) as? RxPullToRefresh }
         set { objc_setAssociatedObject(self, &Keys.topPullToRefresh, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
@@ -31,43 +55,33 @@ public extension UIScrollView {
     /**
      A RxPullToRefresh object placed at the bottom.
      */
-    private(set) var bottomPullToRefresh: RxPullToRefresh? {
+    var bottomPullToRefresh: RxPullToRefresh? {
         get { return objc_getAssociatedObject(self, &Keys.bottomPullToRefresh) as? RxPullToRefresh }
         set { objc_setAssociatedObject(self, &Keys.bottomPullToRefresh, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
-
 }
 
-//extension UIScrollView {
-//    override open func willMove(toSuperview newSuperview: UIView?) {
-//        super.willMove(toSuperview: newSuperview)
-//        if superview == nil {
-//            self.endAllRefreshing()
-//            self.removeAllPullToRefresh()
-//        }
-//    }
-//}
-
-public extension UIScrollView {
+//public extension UIScrollView {
+public extension RxPullToRefreshExtensionProxy where Base: UIScrollView {
     /**
      A function to add a RxPullToRefresh object to a UIScrollView.
 
      - parameter pullToRefresh: A RxPullToRefresh object being added to a UIScrollView.
      */
     func addPullToRefresh(_ pullToRefresh: RxPullToRefresh) {
-        pullToRefresh.scrollView = self
+        pullToRefresh.scrollView = self.base
 
         let refreshView: RxPullToRefreshView = pullToRefresh.refreshView
         switch pullToRefresh.position {
         case .top:
             self.removePullToRefresh(at: .top)
-            self.topPullToRefresh = pullToRefresh
+            self.base.topPullToRefresh = pullToRefresh
         case .bottom:
             self.removePullToRefresh(at: .bottom)
-            self.bottomPullToRefresh = pullToRefresh
+            self.base.bottomPullToRefresh = pullToRefresh
         }
-        self.addSubview(refreshView)
-        self.sendSubviewToBack(refreshView)
+        self.base.addSubview(refreshView)
+        self.base.sendSubviewToBack(refreshView)
 
         refreshView.frame = self.defaultFrame(for: pullToRefresh)
         refreshView.translatesAutoresizingMaskIntoConstraints = false
@@ -82,8 +96,8 @@ public extension UIScrollView {
      */
     func getPullToRefresh(at position: RxPullToRefreshPosition) -> RxPullToRefresh? {
         switch position {
-        case .top: return self.topPullToRefresh
-        case .bottom: return self.bottomPullToRefresh
+        case .top: return self.base.topPullToRefresh
+        case .bottom: return self.base.bottomPullToRefresh
         }
     }
 
@@ -95,11 +109,11 @@ public extension UIScrollView {
     func removePullToRefresh(at position: RxPullToRefreshPosition) {
         switch position {
         case .top:
-            self.topPullToRefresh?.refreshView.removeFromSuperview()
-            self.topPullToRefresh = nil
+            self.base.topPullToRefresh?.refreshView.removeFromSuperview()
+            self.base.topPullToRefresh = nil
         case .bottom:
-            self.bottomPullToRefresh?.refreshView.removeFromSuperview()
-            self.bottomPullToRefresh = nil
+            self.base.bottomPullToRefresh?.refreshView.removeFromSuperview()
+            self.base.bottomPullToRefresh = nil
         }
     }
 
@@ -118,8 +132,8 @@ public extension UIScrollView {
      */
     func startRefreshing(at position: RxPullToRefreshPosition) {
         switch position {
-        case .top: self.topPullToRefresh?.startRefreshing()
-        case .bottom: self.bottomPullToRefresh?.startRefreshing()
+        case .top: self.base.topPullToRefresh?.startRefreshing()
+        case .bottom: self.base.bottomPullToRefresh?.startRefreshing()
         }
     }
 
@@ -130,8 +144,8 @@ public extension UIScrollView {
      */
     func endRefreshing(at position: RxPullToRefreshPosition) {
         switch position {
-        case .top: self.topPullToRefresh?.endRefreshing()
-        case .bottom: self.bottomPullToRefresh?.endRefreshing()
+        case .top: self.base.topPullToRefresh?.endRefreshing()
+        case .bottom: self.base.bottomPullToRefresh?.endRefreshing()
         }
     }
 
@@ -142,8 +156,8 @@ public extension UIScrollView {
      */
     func failRefreshing(at position: RxPullToRefreshPosition) {
         switch position {
-        case .top: self.topPullToRefresh?.failRefreshing()
-        case .bottom: self.bottomPullToRefresh?.failRefreshing()
+        case .top: self.base.topPullToRefresh?.failRefreshing()
+        case .bottom: self.base.bottomPullToRefresh?.failRefreshing()
         }
     }
 
@@ -157,16 +171,17 @@ public extension UIScrollView {
 
 }
 
-internal extension UIScrollView {
+//internal extension UIScrollView {
+internal extension RxPullToRefreshExtensionProxy where Base: UIScrollView {
 
     /** A CGFloat indicating a scrollable height. */
-    var scrollableHeight: CGFloat { return max(0.0, self.contentSize.height - self.frame.height) }
+    var scrollableHeight: CGFloat { return max(0.0, self.base.contentSize.height - self.base.frame.height) }
 
     /** A Function indicating whether a RxPullToRefresh object can be enabled. */
     func canBeEnabled(at position: RxPullToRefreshPosition) -> Bool {
         switch position {
-        case .top: return self.contentSize.height > 0.0
-        case .bottom: return self.contentSize.height > self.frame.height
+        case .top: return self.base.contentSize.height > 0.0
+        case .bottom: return self.base.contentSize.height > self.base.frame.height
         }
     }
 
@@ -184,14 +199,14 @@ internal extension UIScrollView {
      A CGPoint value indicating a normalized content offset depending on the effectiveContentInset value.
      */
     var normalizedContentOffset: CGPoint {
-        return self.contentOffset.normalize(from: self.effectiveContentInset)
+        return self.base.contentOffset.normalize(from: self.effectiveContentInset)
     }
 
     /**
      A UIEdgeInsets value indicating a effective content offset depending on the contentInsetAdjustmentBehavior value.
      */
     var effectiveContentInset: UIEdgeInsets {
-        if #available(iOS 11, *) { return self.adjustedContentInset } else { return self.contentInset }
+        if #available(iOS 11, *) { return self.base.adjustedContentInset } else { return self.base.contentInset }
     }
 
     /**
@@ -206,10 +221,10 @@ internal extension UIScrollView {
                       y: {
                           switch pullToRefresh.position {
                           case .top: return -refreshView.frame.size.height
-                          case .bottom: return contentSize.height
+                          case .bottom: return self.base.contentSize.height
                           }
                       }(),
-                      width: self.frame.width,
+                      width: self.base.frame.width,
                       height: refreshView.frame.height)
     }
 

@@ -101,7 +101,7 @@ private extension RxPullToRefresh {
             return
         }
         let refreshHeight: CGFloat = self.refreshView.frame.size.height
-        let relativeOffset: CGPoint = sv.relativeContentOffset(for: self.position)
+        let relativeOffset: CGPoint = sv.p2r.relativeContentOffset(for: self.position)
         self.scrollRate = {
             switch self.position {
             case .top:    return -relativeOffset.y / refreshHeight
@@ -116,7 +116,7 @@ private extension RxPullToRefresh {
 
         case .initial:
             self.scrollViewInitialInsets = sv.contentInset
-            self.scrollViewInitialEffectiveInsets = sv.effectiveContentInset
+            self.scrollViewInitialEffectiveInsets = sv.p2r.effectiveContentInset
             switch self.position {
             case .top where -refreshHeight..<0.0 ~= relativeOffset.y:                 /* Offset is under threshold */
                 if self.isDragging || self.isForciblyRefreshing { self.state = .pulling }
@@ -202,7 +202,7 @@ private extension RxPullToRefresh {
     func contentSizeChanged() {
         guard let sv: UIScrollView = self.scrollView else { return }
         self.debug?.log(self.isVisible, .info, "++")
-        self.isEnabled = sv.canBeEnabled(at: self.position)
+        self.isEnabled = sv.p2r.canBeEnabled(at: self.position)
         if self.position == .bottom {
             self.refreshView.frame = CGRect(x: 0,
                                             y: sv.contentSize.height,
@@ -211,7 +211,7 @@ private extension RxPullToRefresh {
         }
         if self.state != .loading && self.state != .finished {
             self.scrollViewInitialInsets = sv.contentInset
-            self.scrollViewInitialEffectiveInsets = sv.effectiveContentInset
+            self.scrollViewInitialEffectiveInsets = sv.p2r.effectiveContentInset
         }
     }
 
@@ -223,7 +223,7 @@ private extension RxPullToRefresh {
         self.debug?.log(self.isVisible, .info, "++")
         if self.state != .loading && self.state != .finished {
             self.scrollViewInitialInsets = sv.contentInset
-            self.scrollViewInitialEffectiveInsets = sv.effectiveContentInset
+            self.scrollViewInitialEffectiveInsets = sv.p2r.effectiveContentInset
         }
     }
 
@@ -308,11 +308,11 @@ internal extension RxPullToRefresh {
             switch self.position {
             case .bottom where shouldKeepOffset && !self.isDragging:
                 return sv.contentOffset.replaced(
-                        y: self.scrollViewInitialEffectiveInsets.bottom + sv.scrollableHeight + self.refreshView.frame.height
+                        y: self.scrollViewInitialEffectiveInsets.bottom + sv.p2r.scrollableHeight + self.refreshView.frame.height
                 )
             case .bottom where !shouldKeepOffset && !self.isDragging:
                 return sv.contentOffset.replaced(
-                        y: self.scrollViewInitialEffectiveInsets.bottom + sv.scrollableHeight
+                        y: self.scrollViewInitialEffectiveInsets.bottom + sv.p2r.scrollableHeight
                 )
             default:
                 return nil
