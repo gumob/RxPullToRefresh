@@ -120,17 +120,58 @@
 <span class="kd">import</span> <span class="kt">RxCocoa</span>
 <span class="kd">import</span> <span class="kt">RxPullToRefresh</span>
 </code></pre>
-<h5 id='add-rxpulltorefresh-to-header' class='heading'>Add RxPullToRefresh to header</h5>
-<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span> <span class="o">=</span> <span class="kt">RxPullToRefresh</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+<h5 id='add-rxpulltorefresh' class='heading'>Add RxPullToRefresh</h5>
+<pre class="highlight swift"><code><span class="c1">// Create a RxPullToRefresh object</span>
+<span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span> <span class="o">=</span> <span class="kt">RxPullToRefresh</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="o">.</span><span class="n">top</span><span class="p">)</span>
+
+<span class="c1">// Observe RxPullToRefreshDelegate</span>
 <span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">action</span>
         <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">RxPullToRefreshState</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">scroll</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="k">in</span>
+            <span class="c1">// Send request if RxPullToRefreshState is changed to .loading</span>
             <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
-            <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="nf">load</span><span class="p">()</span>
-            <span class="k">default</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">initial</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">pulling</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">overThreshold</span><span class="p">:</span> <span class="k">break</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span>       <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">prepend</span><span class="p">()</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span>      <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">failed</span><span class="p">:</span>        <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">backing</span><span class="p">:</span>       <span class="k">break</span>
             <span class="p">}</span>
         <span class="p">})</span>
         <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
-<span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="nf">addPullToRefresh</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="p">)</span>
+
+<span class="c1">// Add a RxPullToRefresh object to UITableView</span>
+<span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">p2r</span><span class="o">.</span><span class="nf">addPullToRefresh</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="p">)</span>
+</code></pre>
+<h5 id='load-and-append-contents-to-header' class='heading'>Load and append contents to header</h5>
+
+<p><small>⚠️ To finish loading, you need to explicitly call <code>UIScrollView.p2r.endRefreshing(at:)</code>, <code>UIScrollView.p2r.endAllRefreshing()</code>, or <code><a href="Classes/RxPullToRefresh.html#/s:15RxPullToRefreshAAC13endRefreshingyyF">RxPullToRefresh.endRefreshing()</a></code>.</small></p>
+<pre class="highlight plaintext"><code>self.viewModel.prepend()
+              .subscribe(onSuccess: { [weak self] in
+
+                  // Successfully loaded, collapse refresh view immediately
+                  self?.tableView.p2r.endRefreshing(at: .top)
+
+              }, onError: { [weak self] (_: Error) in
+
+                  // Failed to load, show error
+                  self?.tableView.p2r.failRefreshing(at: .top)
+              })
+
+              .disposed(by: self.disposeBag)
+</code></pre>
+<h5 id='disable-refreshing-by-binding-boolean-value-to-canloadmore-property' class='heading'>Disable refreshing by binding Boolean value to canLoadMore property</h5>
+<pre class="highlight swift"><code><span class="k">self</span><span class="o">.</span><span class="n">viewModel</span><span class="o">.</span><span class="n">canPrepend</span>
+        <span class="o">.</span><span class="nf">asDriver</span><span class="p">()</span>
+        <span class="o">.</span><span class="nf">drive</span><span class="p">(</span><span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">canLoadMore</span><span class="p">)</span>
+        <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
+</code></pre>
+<h5 id='dispose-rxpulltorefresh-objects' class='heading'>Dispose RxPullToRefresh objects</h5>
+<pre class="highlight swift"><code><span class="k">override</span> <span class="kd">func</span> <span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">_</span> <span class="nv">animated</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">super</span><span class="o">.</span><span class="nf">viewDidDisappear</span><span class="p">(</span><span class="n">animated</span><span class="p">)</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">p2r</span><span class="o">.</span><span class="nf">endAllRefreshing</span><span class="p">()</span>
+    <span class="k">self</span><span class="o">.</span><span class="n">tableView</span><span class="o">.</span><span class="n">p2r</span><span class="o">.</span><span class="nf">removeAllPullToRefresh</span><span class="p">()</span>
+<span class="p">}</span>
 </code></pre>
 <h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
 <h5 id='about-the-example-project' class='heading'>About the example project</h5>
@@ -146,13 +187,15 @@
 </ul>
 <h5 id='build-the-example-app' class='heading'>Build the example app</h5>
 
-<p>1) Update Carthage frameworks</p>
-<pre class="highlight shell"><code><span class="gp">$ </span>carthage update --platform iOS
-</code></pre>
-
-<p>2) Open <code>RxPullToRefresh.xcodeproj</code>
-3) Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window
-4) Press ⌘R</p>
+<ol>
+<li>Update Carthage frameworks
+<code>bash
+$ carthage update --platform iOS
+</code></li>
+<li>Open <code>RxPullToRefresh.xcodeproj</code></li>
+<li>Select the scheme <code>RxPullToRefreshExample</code> from the drop-down menu in the upper left of the Xcode window</li>
+<li>Press ⌘R</li>
+</ol>
 
           </div>
         </section>

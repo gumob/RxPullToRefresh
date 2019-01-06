@@ -141,7 +141,7 @@ extension BaseTableViewController {
                 .filter { $0.state == .loading }
                 .debug("🔺🎬🎬🎬🎬")
                 .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
-                    if state == .loading { self?.prepend() }
+                    self?.prepend()
                 })
                 .disposed(by: self.disposeBag)
         self.viewModel.canPrepend
@@ -158,7 +158,7 @@ extension BaseTableViewController {
                 .filter { $0.state == .loading }
                 .debug("🔽🎬🎬🎬🎬")
                 .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
-                    if state == .loading { self?.append() }
+                    self?.append()
                 })
                 .disposed(by: self.disposeBag)
         self.viewModel.canAppend

@@ -66,19 +66,69 @@ import RxCocoa
 import RxPullToRefresh
 ```
 
-##### Add RxPullToRefresh to header
+##### Add RxPullToRefresh
 
 ```swift
+// Create a RxPullToRefresh object
 self.topPullToRefresh = RxPullToRefresh(position: .top)
+
+// Observe RxPullToRefreshDelegate
 self.topPullToRefresh.rx.action
         .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
+            // Send request if RxPullToRefreshState is changed to .loading
             switch state {
-            case .loading: self?.viewModel.load()
-            default:       break
+            case .initial:       break
+            case .pulling:       break
+            case .overThreshold: break
+            case .loading:       self?.prepend()
+            case .finished:      break
+            case .failed:        break
+            case .backing:       break
             }
         })
         .disposed(by: self.disposeBag)
-self.tableView.addPullToRefresh(self.topPullToRefresh)
+
+// Add a RxPullToRefresh object to UITableView
+self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
+```
+
+##### Load and append contents to header
+
+<small>⚠️ To finish loading, you need to explicitly call `UIScrollView.p2r.endRefreshing(at:)`, `UIScrollView.p2r.endAllRefreshing()`, or `RxPullToRefresh.endRefreshing()`.</small>
+
+```
+self.viewModel.prepend()
+              .subscribe(onSuccess: { [weak self] in
+
+                  // Successfully loaded, collapse refresh view immediately
+                  self?.tableView.p2r.endRefreshing(at: .top)
+
+              }, onError: { [weak self] (_: Error) in
+
+                  // Failed to load, show error
+                  self?.tableView.p2r.failRefreshing(at: .top)
+              })
+
+              .disposed(by: self.disposeBag)
+```
+
+##### Disable refreshing by binding Boolean value to canLoadMore property
+
+```swift
+self.viewModel.canPrepend
+        .asDriver()
+        .drive(self.topPullToRefresh.rx.canLoadMore)
+        .disposed(by: self.disposeBag)
+```
+
+##### Dispose RxPullToRefresh objects
+
+```swift
+override func viewDidDisappear(_ animated: Bool) {
+    super.viewDidDisappear(animated)
+    self.tableView.p2r.endAllRefreshing()
+    self.tableView.p2r.removeAllPullToRefresh()
+}
 ```
 
 ### Advanced Usage
