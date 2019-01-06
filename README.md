@@ -8,7 +8,7 @@
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # RxPullToRefresh
-A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.
+A Swift library allows you to create a flexibly customizable pull-to-refresh view supporting RxSwift.
 
 <img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="240px" style="width:240px;"/>
 
