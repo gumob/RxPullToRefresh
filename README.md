@@ -10,14 +10,14 @@
 # RxPullToRefresh
 A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.
 
-<img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="40%" style="width:40%;"/>
+<img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="240px" style="width:240px;"/>
 
 ## Features
 
 - Support UIScrollView, UITableView, and UICollectionView
 - Customizable refresh view
 - Customizable animaton options
-- Configurable option whether to load while dragging or to load you after a finger
+- Configurable option whether to load while dragging or to load after an user release a finger
 - Error handling
 - Support RxSwift/RxCocoa
 
