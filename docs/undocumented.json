@@ -9,21 +9,21 @@
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/UIScrollView+RxPullToRefresh.swift",
-      "line": 31,
+      "line": 32,
       "symbol": "RxPullToRefreshExtensionCompatible.CompatibleType",
       "symbol_kind": "source.lang.swift.decl.associatedtype",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/UIScrollView+RxPullToRefresh.swift",
-      "line": 32,
+      "line": 33,
       "symbol": "RxPullToRefreshExtensionCompatible.p2r",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
     },
     {
       "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/UIScrollView+RxPullToRefresh.swift",
-      "line": 36,
+      "line": 37,
       "symbol": "RxPullToRefreshExtensionCompatible.p2r",
       "symbol_kind": "source.lang.swift.decl.var.instance",
       "warning": "undocumented"
