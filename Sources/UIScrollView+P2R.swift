@@ -1,5 +1,5 @@
 //
-//  UIScrollView+RxPullToRefresh.swift
+//  UIScrollView+Proxy.swift
 //  RxPullToRefresh
 //
 //  Created by kojirof on 2018/12/15.
@@ -9,44 +9,6 @@
 import Foundation
 import UIKit
 import ObjectiveC
-
-/**
-  RxPullToRefresh extension for UIScrollView.
- */
-public final class RxPullToRefreshExtensionProxy<Base> {
-    /** Base object to extend. */
-    let base: Base
-
-    /**
-       Create extensions with base object.
-
-       - parameter base: A base object.
-     */
-    public init(_ base: Base) { self.base = base }
-}
-
-/**
-  An extension provider for RxPullToRefresh.
- */
-public protocol RxPullToRefreshExtensionCompatible {
-    associatedtype CompatibleType
-    var p2r: CompatibleType { get }
-}
-
-extension RxPullToRefreshExtensionCompatible {
-    public var p2r: RxPullToRefreshExtensionProxy<Self> {
-        return RxPullToRefreshExtensionProxy(self)
-    }
-}
-
-/**
-  Extend UIScrollView with RxPullToRefreshExtensionProxy proxy.
- */
-extension UIScrollView: RxPullToRefreshExtensionCompatible {
-    typealias UIScrollView = CompatibleType
-    /** A proxy object for UIScrollView. */
-    public var p2r: CompatibleType { return self }
-}
 
 /**
   An extension UIScrollView to manage RxPullToRefresh objects.
@@ -75,7 +37,7 @@ internal extension UIScrollView {
 }
 
 //public extension UIScrollView {
-public extension RxPullToRefreshExtensionProxy where Base: UIScrollView {
+public extension RxPullToRefreshProxy where Base: UIScrollView {
     /**
      A function to add a RxPullToRefresh object to a UIScrollView.
 
@@ -185,7 +147,7 @@ public extension RxPullToRefreshExtensionProxy where Base: UIScrollView {
 }
 
 //internal extension UIScrollView {
-internal extension RxPullToRefreshExtensionProxy where Base: UIScrollView {
+internal extension RxPullToRefreshProxy where Base: UIScrollView {
 
     /** A CGFloat indicating a scrollable height. */
     var scrollableHeight: CGFloat { return max(0.0, self.base.contentSize.height - self.base.frame.height) }

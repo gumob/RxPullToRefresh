@@ -46,7 +46,7 @@
 		A71F678921C52AC0007CADA0 /* RxPullToRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678221C52ABF007CADA0 /* RxPullToRefreshView.swift */; };
 		A71F678A21C52AC0007CADA0 /* RxPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678321C52ABF007CADA0 /* RxPullToRefresh.swift */; };
 		A71F678D21C52AC0007CADA0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678621C52ABF007CADA0 /* Enums.swift */; };
-		A71F678E21C52AC0007CADA0 /* UIScrollView+RxPullToRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678721C52AC0007CADA0 /* UIScrollView+RxPullToRefresh.swift */; };
+		A71F678E21C52AC0007CADA0 /* UIScrollView+P2R.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F678721C52AC0007CADA0 /* UIScrollView+P2R.swift */; };
 		A71F679221C54FAB007CADA0 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F679021C54FAB007CADA0 /* RxCocoa.framework */; };
 		A71F679321C54FAB007CADA0 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F679121C54FAB007CADA0 /* RxSwift.framework */; };
 		A71F67EC21C66248007CADA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
@@ -60,6 +60,7 @@
 		A71F682421C66543007CADA0 /* RxCocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F679021C54FAB007CADA0 /* RxCocoa.framework */; };
 		A71F682521C66543007CADA0 /* RxSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F679121C54FAB007CADA0 /* RxSwift.framework */; };
 		A71F682721C6669B007CADA0 /* RxDataSources.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F682621C6669B007CADA0 /* RxDataSources.framework */; };
+		A738AAFA21E1FB13004B7BAF /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = A738AAF921E1FB13004B7BAF /* Extensions.swift */; };
 		A743D1CC21C7A17F00230502 /* RxPullToRefresh.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* RxPullToRefresh.framework */; };
 		A743D1CD21C7A17F00230502 /* RxPullToRefresh.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = A71F674521C50EA8007CADA0 /* RxPullToRefresh.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A743D1D021C7DCCC00230502 /* Helpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743D1CF21C7DCCC00230502 /* Helpers.swift */; };
@@ -142,7 +143,7 @@
 		A71F678221C52ABF007CADA0 /* RxPullToRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxPullToRefreshView.swift; sourceTree = "<group>"; };
 		A71F678321C52ABF007CADA0 /* RxPullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxPullToRefresh.swift; sourceTree = "<group>"; };
 		A71F678621C52ABF007CADA0 /* Enums.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
-		A71F678721C52AC0007CADA0 /* UIScrollView+RxPullToRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+RxPullToRefresh.swift"; sourceTree = "<group>"; };
+		A71F678721C52AC0007CADA0 /* UIScrollView+P2R.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIScrollView+P2R.swift"; sourceTree = "<group>"; };
 		A71F679021C54FAB007CADA0 /* RxCocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxCocoa.framework; path = Carthage/Build/iOS/RxCocoa.framework; sourceTree = "<group>"; };
 		A71F679121C54FAB007CADA0 /* RxSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxSwift.framework; path = Carthage/Build/iOS/RxSwift.framework; sourceTree = "<group>"; };
 		A71F67E921C66248007CADA0 /* RxPullToRefreshExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxPullToRefreshExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -157,6 +158,7 @@
 		A71F681821C66488007CADA0 /* CustomRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRefresh.swift; sourceTree = "<group>"; };
 		A71F681B21C66489007CADA0 /* TableViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewModel.swift; sourceTree = "<group>"; };
 		A71F682621C6669B007CADA0 /* RxDataSources.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxDataSources.framework; path = Carthage/Build/iOS/RxDataSources.framework; sourceTree = "<group>"; };
+		A738AAF921E1FB13004B7BAF /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		A743D1CF21C7DCCC00230502 /* Helpers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Helpers.swift; sourceTree = "<group>"; };
 		A743D1D121C8F57400230502 /* RxPullToRefresh+Core.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxPullToRefresh+Core.swift"; sourceTree = "<group>"; };
 		A743D1D321C8F64000230502 /* RxPullToRefresh+Refreshing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxPullToRefresh+Refreshing.swift"; sourceTree = "<group>"; };
@@ -265,10 +267,11 @@
 				A7F23F1D21D76A7D00209B4B /* RxPullToRefreshView+Rx.swift */,
 				A71F678121C52ABE007CADA0 /* DefaultRefreshView.swift */,
 				A7F23F1921D768FC00209B4B /* UIScrollView+Rx.swift */,
-				A71F678721C52AC0007CADA0 /* UIScrollView+RxPullToRefresh.swift */,
+				A71F678721C52AC0007CADA0 /* UIScrollView+P2R.swift */,
 				A70F137921DC652700668518 /* Animator.swift */,
 				A712403321CE3A5000883E13 /* Debug.swift */,
 				A71F678621C52ABF007CADA0 /* Enums.swift */,
+				A738AAF921E1FB13004B7BAF /* Extensions.swift */,
 				A743D1CF21C7DCCC00230502 /* Helpers.swift */,
 			);
 			path = Sources;
@@ -643,10 +646,11 @@
 				A71F678A21C52AC0007CADA0 /* RxPullToRefresh.swift in Sources */,
 				A7F23F1C21D769EA00209B4B /* RxPullToRefreshDelegate+Rx.swift in Sources */,
 				A754123821D7422200442999 /* RxPullToRefreshDelegate.swift in Sources */,
+				A738AAFA21E1FB13004B7BAF /* Extensions.swift in Sources */,
 				A7F23F1E21D76A7D00209B4B /* RxPullToRefreshView+Rx.swift in Sources */,
 				A71F678921C52AC0007CADA0 /* RxPullToRefreshView.swift in Sources */,
 				A7F23F1A21D768FC00209B4B /* UIScrollView+Rx.swift in Sources */,
-				A71F678E21C52AC0007CADA0 /* UIScrollView+RxPullToRefresh.swift in Sources */,
+				A71F678E21C52AC0007CADA0 /* UIScrollView+P2R.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,6 +24,7 @@ xcodebuild_arguments:
   - RxPullToRefresh
 exclude:
   - Sources/DefaultRefreshView.swift
+  - Sources/Extensions.swift
   - Sources/Helpers.swift
 custom_categories:
   - name: Classes
@@ -37,8 +38,8 @@ custom_categories:
     children:
       - Reactive
       - UIScrollView
-      - RxPullToRefreshExtensionProxy
-      - RxPullToRefreshExtensionCompatible
+      - RxPullToRefreshProxy
+      - RxPullToRefreshCompatible
   - name: Enumerations
     children:
       - RxPullToRefreshPosition
