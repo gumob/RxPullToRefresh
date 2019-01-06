@@ -24,27 +24,27 @@ xcodebuild_arguments:
   - RxPullToRefresh
 exclude:
   - Sources/DefaultRefreshView.swift
-  - Sources/Extensions.swift
+#  - Sources/Extensions.swift
   - Sources/Helpers.swift
 custom_categories:
   - name: Classes
     children:
-      - RxPullToRefresh
-      - RxPullToRefreshView
+    - RxPullToRefresh
+    - RxPullToRefreshView
   - name: Delegate
     children:
-      - RxPullToRefreshDelegate
+    - RxPullToRefreshDelegate
   - name: Extensions
     children:
-      - Reactive
-      - UIScrollView
-      - RxPullToRefreshProxy
-      - RxPullToRefreshCompatible
+    - Reactive
+    - UIScrollView
+    - RxPullToRefreshProxy
+    - RxPullToRefreshCompatible
   - name: Enumerations
     children:
-      - RxPullToRefreshPosition
-      - RxPullToRefreshState
-      - RxPullToRefreshAnimationType
+    - RxPullToRefreshPosition
+    - RxPullToRefreshState
+    - RxPullToRefreshAnimationType
   - name: Guides
     children:
-      - USAGE
+    - USAGE

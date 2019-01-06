@@ -1,6 +1,20 @@
 {
   "warnings": [
     {
+      "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/Extensions.swift",
+      "line": 42,
+      "symbol": "RxPullToRefreshCompatible.p2r",
+      "symbol_kind": "source.lang.swift.decl.var.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/Extensions.swift",
+      "line": 48,
+      "symbol": "RxPullToRefreshCompatible.p2r",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/kojirof/Documents/pj-github/RxPullToRefresh/Sources/RxPullToRefreshDelegate+Rx.swift",
       "line": 42,
       "symbol": "Reactive.delegate",

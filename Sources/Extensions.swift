@@ -9,12 +9,7 @@
 import Foundation
 
 /**
- Use `RxPullToRefreshProxy` as customization point for constrained protocol extensions.<br/>
- `// Extend RxPullToRefreshProxy protocol`<br/>
- `extension RxPullToRefreshProxy where Base: SomeType {`<br/>
-     // Put any specific extension for SomeType here`<br/>
- `}`<br/>
- With this approach we can have more specialized methods and properties using `Base` and not just specialized on common base type.
+ RxPullToRefresh extension for UIScrollView.
  */
 public struct RxPullToRefreshProxy<Base> {
     /** Base object to extend. */
