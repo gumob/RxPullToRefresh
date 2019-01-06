@@ -78,20 +78,20 @@ self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
 
 #### Observe RxPullToRefreshDelegate
 
-By observing [RxPullToRefreshDelegate](https://gumob.github.io/RxPullToRefresh/Protocols/RxPullToRefreshDelegate.html), you can watch the state of a RxPullToRefresh object. This delegate is called by the RxPullToRefresh object every time its [state](https://gumob.github.io/RxPullToRefresh/Enums/RxPullToRefreshState.html) or scrolling rate is changed.
+By observing [RxPullToRefreshDelegate](https://gumob.github.io/RxPullToRefresh/Protocols/RxPullToRefreshDelegate.html), you can watch the state of a RxPullToRefresh object. This delegate is get called by the RxPullToRefresh object every time its [state](https://gumob.github.io/RxPullToRefresh/Enums/RxPullToRefreshState.html) or scrolling rate is changed.
 ```swift
 // Observe RxPullToRefreshDelegate
 self.topPullToRefresh.rx.action
         .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
             // Send request if RxPullToRefreshState is changed to .loading
             switch state {
-                case .initial:       break
-                case .pulling:       break
-                case .overThreshold: break
-                case .loading:       self?.prepend()
-                case .finished:      break
-                case .failed:        break
-                case .backing:       break
+            case .initial: break
+            case .pulling: break
+            case .overThreshold: break
+            case .loading: self?.prepend()
+            case .finished: break
+            case .failed: break
+            case .backing: break
             }
         })
         .disposed(by: self.disposeBag)

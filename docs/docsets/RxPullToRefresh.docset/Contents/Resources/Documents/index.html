@@ -177,19 +177,19 @@
 </code></pre>
 <h4 id='observe-rxpulltorefreshdelegate' class='heading'>Observe RxPullToRefreshDelegate</h4>
 
-<p>By observing <a href="https://gumob.github.io/RxPullToRefresh/Protocols/RxPullToRefreshDelegate.html">RxPullToRefreshDelegate</a>, you can watch the state of a RxPullToRefresh object. This delegate is called by the RxPullToRefresh object every time its <a href="https://gumob.github.io/RxPullToRefresh/Enums/RxPullToRefreshState.html">state</a> or scrolling rate is changed.</p>
+<p>By observing <a href="https://gumob.github.io/RxPullToRefresh/Protocols/RxPullToRefreshDelegate.html">RxPullToRefreshDelegate</a>, you can watch the state of a RxPullToRefresh object. This delegate is get called by the RxPullToRefresh object every time its <a href="https://gumob.github.io/RxPullToRefresh/Enums/RxPullToRefreshState.html">state</a> or scrolling rate is changed.</p>
 <pre class="highlight swift"><code><span class="c1">// Observe RxPullToRefreshDelegate</span>
 <span class="k">self</span><span class="o">.</span><span class="n">topPullToRefresh</span><span class="o">.</span><span class="n">rx</span><span class="o">.</span><span class="n">action</span>
         <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">RxPullToRefreshState</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">scroll</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="k">in</span>
             <span class="c1">// Send request if RxPullToRefreshState is changed to .loading</span>
             <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">initial</span><span class="p">:</span>       <span class="k">break</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">pulling</span><span class="p">:</span>       <span class="k">break</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">overThreshold</span><span class="p">:</span> <span class="k">break</span>
-                <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span>       <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">prepend</span><span class="p">()</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span>      <span class="k">break</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">failed</span><span class="p">:</span>        <span class="k">break</span>
-                <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">backing</span><span class="p">:</span>       <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">initial</span><span class="p">:</span> <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">pulling</span><span class="p">:</span> <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">overThreshold</span><span class="p">:</span> <span class="k">break</span>
+            <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">prepend</span><span class="p">()</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span> <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">failed</span><span class="p">:</span> <span class="k">break</span>
+            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">backing</span><span class="p">:</span> <span class="k">break</span>
             <span class="p">}</span>
         <span class="p">})</span>
         <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
