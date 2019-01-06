@@ -38,7 +38,7 @@ RxPullToRefresh allows you flexibly customize a refresh view by extending RxPull
 - [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift"): A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.
 - [BaseTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift"): A view controller that conforms to MVVM architecture.
 - [CustomTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift"): A view controller that creates a CustomPullToRefresh instance.
-- [TableViewModel](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift"): A view model that manipulates data sources.
+- [TableViewModel](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift"): A view model that manipulates data sources.
 
 ##### Build the example app
 
