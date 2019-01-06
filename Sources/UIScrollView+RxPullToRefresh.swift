@@ -11,27 +11,40 @@ import UIKit
 import ObjectiveC
 
 /**
-  An extension proxy for RxPullToRefresh.
+  RxPullToRefresh extension for UIScrollView.
  */
 public final class RxPullToRefreshExtensionProxy<Base> {
+    /** Base object to extend. */
     let base: Base
 
+    /**
+       Create extensions with base object.
+
+       - parameter base: A base object.
+     */
     public init(_ base: Base) { self.base = base }
 }
 
-public protocol RxPullToRefreshCompatible {
+/**
+  An extension provider for RxPullToRefresh.
+ */
+public protocol RxPullToRefreshExtensionCompatible {
     associatedtype CompatibleType
     var p2r: CompatibleType { get }
 }
 
-extension RxPullToRefreshCompatible {
+extension RxPullToRefreshExtensionCompatible {
     public var p2r: RxPullToRefreshExtensionProxy<Self> {
         return RxPullToRefreshExtensionProxy(self)
     }
 }
 
-extension UIScrollView: RxPullToRefreshCompatible {
+/**
+  Extend UIScrollView with RxPullToRefreshExtensionProxy proxy.
+ */
+extension UIScrollView: RxPullToRefreshExtensionCompatible {
     typealias UIScrollView = CompatibleType
+    /** A proxy object for UIScrollView. */
     public var p2r: CompatibleType { return self }
 }
 

@@ -35,8 +35,10 @@ custom_categories:
       - RxPullToRefreshDelegate
   - name: Extensions
     children:
-      - UIScrollView
       - Reactive
+      - UIScrollView
+      - RxPullToRefreshExtensionProxy
+      - RxPullToRefreshExtensionCompatible
   - name: Enumerations
     children:
       - RxPullToRefreshPosition

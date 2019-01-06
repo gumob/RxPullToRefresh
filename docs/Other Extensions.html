@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Delegate  Reference</title>
+    <title>Other Extensions  Reference</title>
     <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="css/highlight.css" />
     <meta charset="utf-8">
@@ -14,9 +14,9 @@
   </head>
   <body>
 
-    <a name="//apple_ref/swift/Section/Delegate" class="dashAnchor"></a>
+    <a name="//apple_ref/swift/Section/Other Extensions" class="dashAnchor"></a>
 
-    <a title="Delegate  Reference"></a>
+    <a title="Other Extensions  Reference"></a>
 
     <header class="header">
       <p class="header-col header-col--primary">
@@ -44,7 +44,7 @@
     <p class="breadcrumbs">
       <a class="breadcrumb" href="index.html">RxPullToRefresh Reference</a>
       <img class="carat" src="img/carat.png" />
-      Delegate  Reference
+      Other Extensions  Reference
     </p>
 
     <div class="content-wrapper">
@@ -119,8 +119,9 @@
 
         <section class="section">
           <div class="section-content">
-            <h1>Delegate</h1>
-            
+            <h1>Other Extensions</h1>
+            <p>The following extensions are available globally.</p>
+
           </div>
         </section>
 
@@ -131,9 +132,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/c:@M@RxPullToRefresh@objc(pl)RxPullToRefreshDelegate"></a>
-                    <a name="//apple_ref/swift/Protocol/RxPullToRefreshDelegate" class="dashAnchor"></a>
-                    <a class="token" href="#/c:@M@RxPullToRefresh@objc(pl)RxPullToRefreshDelegate">RxPullToRefreshDelegate</a>
+                    <a name="/c:objc(cs)UIScrollView"></a>
+                    <a name="//apple_ref/swift/Extension/UIScrollView" class="dashAnchor"></a>
+                    <a class="token" href="#/c:objc(cs)UIScrollView">UIScrollView</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -141,16 +142,15 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>The interface for handling actions in a RxPullToRefresh object.</p>
+                        <p>Extend UIScrollView with <code>p2r</code> proxy.</p>
 
-                        <a href="Protocols/RxPullToRefreshDelegate.html" class="slightly-smaller">See more</a>
+                        <a href="Extensions/UIScrollView.html" class="slightly-smaller">See more</a>
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight swift"><code><span class="kd">@objc</span>
-<span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RxPullToRefreshDelegate</span> <span class="p">:</span> <span class="kt">NSObjectProtocol</span></code></pre>
+                          <pre class="highlight swift"><code><span class="kd">class</span> <span class="kt">UIScrollView</span> <span class="p">:</span> <span class="kt">UIView</span><span class="p">,</span> <span class="kt">NSCoding</span><span class="p">,</span> <span class="kt">UIFocusItemScrollableContainer</span></code></pre>
 
                         </div>
                       </div>
