@@ -1,5 +1,5 @@
 //
-//  ViewModel.swift
+//  TableViewModel.swift
 //  Example
 //
 //  Created by kojirof on 2018/12/16.
@@ -13,7 +13,7 @@ import RxCocoa
 import RxDataSources
 import Differentiator
 
-class ViewModel {
+class TableViewModel {
     var sections: BehaviorRelay<[SectionModel]> = BehaviorRelay<[SectionModel]>(value: [SectionModel(title: "Section 1", items: [RowModel]())])
 
     var canPrepend: BehaviorRelay<Bool> = BehaviorRelay<Bool>(value: true)
@@ -52,13 +52,13 @@ class ViewModel {
         self.appendAlpha = 1.0
 
         return Single.create { [weak self] (single) in
-            guard let `self`: ViewModel = self else {
+            guard let `self`: TableViewModel = self else {
                 single(.error(ViewModelError.objectDisposed))
                 return Disposables.create {}
             }
             var sectionModels: [SectionModel] = [SectionModel(title: "Section 1", items: [RowModel]())]
             Array(1...self.initialCellCount).forEach { [weak self] (_) in
-                guard let `self`: ViewModel = self else { return }
+                guard let `self`: TableViewModel = self else { return }
                 let rowModel: RowModel = RowModel(title: "Reload \(self.reloadCount)",
                                                   color: UIColor(red: 33 / 255,
                                                                  green: 33 / 255,
@@ -77,7 +77,7 @@ class ViewModel {
 
     func prepend() -> Single<()> {
         return Single.create { [weak self] (single) in
-            guard let `self`: ViewModel = self else {
+            guard let `self`: TableViewModel = self else {
                 single(.error(ViewModelError.objectDisposed))
                 return Disposables.create {}
             }
@@ -92,7 +92,7 @@ class ViewModel {
                 let start: Int = sectionModels[0].items.count + 1
                 let end: Int = start + Int(arc4random_uniform(3)) + 1
                 Array(start...end).forEach { [weak self] (_) in
-                    guard let `self`: ViewModel = self else { return }
+                    guard let `self`: TableViewModel = self else { return }
                     let rowModel: RowModel = RowModel(title: "Prepend \(self.prependCount)",
                                                       color: UIColor(red: 245 / 255,
                                                                      green: 0 / 255,
@@ -106,7 +106,7 @@ class ViewModel {
                     self.canPrepend.accept(false)
                 }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.refreshDuration) { [weak self] in
-                    guard let `self`: ViewModel = self else {
+                    guard let `self`: TableViewModel = self else {
                         single(.error(ViewModelError.objectDisposed))
                         return
                     }
@@ -122,7 +122,7 @@ class ViewModel {
 
     func append() -> Single<()> {
         return Single.create { [weak self] (single) in
-            guard let `self`: ViewModel = self else {
+            guard let `self`: TableViewModel = self else {
                 single(.error(ViewModelError.objectDisposed))
                 return Disposables.create {}
             }
@@ -137,7 +137,7 @@ class ViewModel {
                 let start: Int = sectionModels[0].items.count + 1
                 let end: Int = start + Int(arc4random_uniform(3)) + 1
                 Array(start...end).forEach { [weak self] (_) in
-                    guard let `self`: ViewModel = self else { return }
+                    guard let `self`: TableViewModel = self else { return }
                     let rowModel: RowModel = RowModel(title: "Append \(self.appendCount)",
                                                       color: UIColor(red: 41 / 255,
                                                                      green: 121 / 255,
@@ -151,7 +151,7 @@ class ViewModel {
                     self.canAppend.accept(false)
                 }
                 DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + self.refreshDuration) { [weak self] in
-                    guard let `self`: ViewModel = self else {
+                    guard let `self`: TableViewModel = self else {
                         single(.error(ViewModelError.objectDisposed))
                         return
                     }

@@ -87,11 +87,11 @@ self.tableView.addPullToRefresh(self.topPullToRefresh)
 
 RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check [example sources](https://github.com/gumob/RxPullToRefresh/blob/master/Example/") for advanced usage.
 
-- [CustomRefresh](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefreshView.swift"): A class inheriting from RxPullToRefresh.
-- [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefreshView.swift"): A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.
-- [BaseTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/BaseTableViewController.swift"): A view controller that conforms to MVVM architecture.
-- [CustomTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomTableViewController.swift"): A view controller that creates a CustomPullToRefresh instance.
-- [ViewModel](https://github.com/gumob/RxPullToRefresh/blob/master/Example/ViewModel.swift"): A view model that manipulates data sources.
+- [CustomRefresh](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift"): A class inheriting from RxPullToRefresh.
+- [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift"): A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.
+- [BaseTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift"): A view controller that conforms to MVVM architecture.
+- [CustomTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift"): A view controller that creates a CustomPullToRefresh instance.
+- [TableViewModel](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift"): A view model that manipulates data sources.
 
 ##### Build the example app
 
@@ -102,6 +102,7 @@ $ carthage update --platform iOS
 2) Open `RxPullToRefresh.xcodeproj`
 3) Select the scheme `RxPullToRefreshExample` from the drop-down menu in the upper left of the Xcode window
 4) Press ⌘R
+
 
 
 ## Copyright

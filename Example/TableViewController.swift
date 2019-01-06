@@ -13,13 +13,31 @@ import RxCocoa
 import RxDataSources
 import RxPullToRefresh
 
+class CustomTableViewController: BaseTableViewController {
+    override var reuseId: String { return "CustomCellId" }
+
+    override func createPullToRefresh(position: RxPullToRefreshPosition) -> RxPullToRefresh {
+        return CustomPullToRefresh(position: position,
+                                   shouldStartLoadingWhileDragging: self.env.loadWhileDragging)
+    }
+}
+
+class DefaultTableViewController: BaseTableViewController {
+    override var reuseId: String { return "DefaultCellId" }
+
+    override func createPullToRefresh(position: RxPullToRefreshPosition) -> RxPullToRefresh {
+        return RxPullToRefresh(position: position,
+                               shouldStartLoadingWhileDragging: self.env.loadWhileDragging)
+    }
+}
+
 class BaseTableViewController: UITableViewController {
     /* Rx */
     var disposeBag: DisposeBag! = DisposeBag()
 
     /* Data Source */
     var dataSource: RxTableViewSectionedAnimatedDataSource<SectionModel>!
-    var viewModel: ViewModel!
+    var viewModel: TableViewModel!
     var reuseId: String {
         /* Overrode in DefaultTableViewController and CustomTableViewController */
         fatalError("You must override this getter method.")
@@ -109,7 +127,7 @@ extension BaseTableViewController {
                     return dataSource.sectionModels[index].title
                 }
         )
-        self.viewModel = ViewModel()
+        self.viewModel = TableViewModel()
         self.viewModel.sections
                 .asDriver()
                 .drive(self.tableView.rx.items(dataSource: self.dataSource))

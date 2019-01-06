@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  RootViewController.swift
 //  Example
 //
 //  Created by kojirof on 2018/12/16.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class RootViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
