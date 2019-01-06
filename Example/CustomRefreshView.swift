@@ -126,8 +126,7 @@ class CustomRefreshView: RxPullToRefreshView {
         self.clipsToBounds = true
         self.isHidden = true
         self.alpha = 0
-        self.backgroundColor = .clear
-        self.backgroundColor = .lightGray /* Debug color */
+        self.backgroundColor = UIColor(red: 0.9, green: 0.9, blue: 0.9, alpha: 1.0)
     }
 }
 
