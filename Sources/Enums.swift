@@ -37,9 +37,9 @@ public enum RxPullToRefreshPosition {
     case overThreshold
     /** A state indicating that user is stop dragging a view and an offset is moved to threshold. */
     case loading
-    /** A state indicating that loading is finished. ⚠️To change state to RxPullToRefreshState.finish, you need to explicitly call UIScrollView.endAllRefreshing or RxPullToRefresh.endRefreshing. */
+    /** A state indicating that loading is finished. ⚠️To change state to RxPullToRefreshState.finish, you need to explicitly call UIScrollView.p2r.endAllRefreshing(), UIScrollView.p2r.endRefreshing(at:), or RxPullToRefresh.endRefreshing(). */
     case finished
-    /** A state indicating that loading is failed. ⚠️To change state to RxPullToRefreshState.failed, you need to explicitly call UIScrollView.endAllRefreshing or RxPullToRefresh.endAllRefreshing. */
+    /** A state indicating that loading is failed. ⚠️To change state to RxPullToRefreshState.failed, you need to explicitly call UIScrollView.p2r.failRefreshing(at:), or RxPullToRefresh.failRefreshing(). */
     case failed
     /** A state indicating that a view is backing to a default offset. */
     case backing

@@ -55,10 +55,9 @@ pod 'RxPullToRefresh'
 
 Read the [API reference](https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html) and the [USAGE.md](https://gumob.github.io/RxPullToRefresh/usage.html) for detailed information.
 
-
 ### Basic Usage
 
-##### Import frameworks to your project
+#### Import frameworks to your project
 
 ```swift
 import RxSwift
@@ -66,12 +65,21 @@ import RxCocoa
 import RxPullToRefresh
 ```
 
-##### Add RxPullToRefresh
+#### Add RxPullToRefresh
+
+Create a RxPullToRefresh object.
 
 ```swift
 // Create a RxPullToRefresh object
 self.topPullToRefresh = RxPullToRefresh(position: .top)
+// Add a RxPullToRefresh object to UITableView
+self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
+```
 
+#### Observe RxPullToRefreshDelegate
+
+By observing [RxPullToRefreshDelegate](https://gumob.github.io/RxPullToRefresh/Protocols/RxPullToRefreshDelegate.html), you can watch the state of a RxPullToRefresh object. This delegate is called by the RxPullToRefresh object every time its [state](https://gumob.github.io/RxPullToRefresh/Enums/RxPullToRefreshState.html) or scrolling rate is changed.
+```swift
 // Observe RxPullToRefreshDelegate
 self.topPullToRefresh.rx.action
         .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
@@ -87,14 +95,9 @@ self.topPullToRefresh.rx.action
             }
         })
         .disposed(by: self.disposeBag)
-
-// Add a RxPullToRefresh object to UITableView
-self.tableView.p2r.addPullToRefresh(self.topPullToRefresh)
 ```
 
-##### Load and append contents to header
-
-<small>⚠️ To finish loading, you need to explicitly call `UIScrollView.p2r.endRefreshing(at:)`, `UIScrollView.p2r.endAllRefreshing()`, or `RxPullToRefresh.endRefreshing()`.</small>
+#### Load and append contents
 
 ```swift
 self.viewModel.prepend()
@@ -108,7 +111,7 @@ self.viewModel.prepend()
               .disposed(by: self.disposeBag)
 ```
 
-##### Disable refreshing by binding Boolean value to canLoadMore property
+#### Disable refreshing by binding Boolean value to canLoadMore property
 
 ```swift
 self.viewModel.canPrepend
@@ -117,7 +120,7 @@ self.viewModel.canPrepend
         .disposed(by: self.disposeBag)
 ```
 
-##### Dispose RxPullToRefresh objects
+#### Dispose RxPullToRefresh objects
 
 ```swift
 override func viewDidDisappear(_ animated: Bool) {
@@ -129,17 +132,17 @@ override func viewDidDisappear(_ animated: Bool) {
 
 ### Advanced Usage
 
-##### About the example project
+#### About the example project
 
-RxPullToRefresh allows you flexibly customize a refresh view by extending RxPullToRefresh and RxPullToRefreshView classes. Please check [example sources](https://github.com/gumob/RxPullToRefresh/blob/master/Example/) for advanced usage.
+`RxPullToRefresh` allows you flexibly customize a refresh view by inheriting [RxPullToRefresh](file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefresh.html) and [RxPullToRefreshView](file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefreshView.html) classes. Please check [example sources](https://github.com/gumob/RxPullToRefresh/blob/master/Example/) for advanced usage.
 
-- [CustomRefresh](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from RxPullToRefresh.
-- [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from RxPullToRefreshView. Animation logics are implemented in this class.
+- [CustomRefresh](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from `RxPullToRefresh`.
+- [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from `RxPullToRefreshView`. Animation logics are implemented in this class.
 - [BaseTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift): A view controller that conforms to MVVM architecture.
-- [CustomTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift): A view controller that creates a CustomPullToRefresh instance.
+- [CustomTableViewController](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewController.swift): A view controller that creates a `CustomPullToRefresh` instance.
 - [TableViewModel](https://github.com/gumob/RxPullToRefresh/blob/master/Example/TableViewModel.swift): A view model that manipulates data sources.
 
-##### Build the example app
+#### Build the example app
 
 1. Update Carthage frameworks
 ```bash
