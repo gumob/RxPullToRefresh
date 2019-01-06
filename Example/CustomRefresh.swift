@@ -1,5 +1,5 @@
 //
-//  CustomRefreshView.swift
+//  CustomRefresh.swift
 //  Example
 //
 //  Created by kojirof on 2018/12/16.

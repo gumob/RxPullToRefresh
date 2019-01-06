@@ -31,7 +31,7 @@
 		A712403421CE3A5000883E13 /* Debug.swift in Sources */ = {isa = PBXBuildFile; fileRef = A712403321CE3A5000883E13 /* Debug.swift */; };
 		A712404021CE426600883E13 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67EB21C66248007CADA0 /* AppDelegate.swift */; };
 		A712404121CE426600883E13 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F67ED21C66248007CADA0 /* ViewController.swift */; };
-		A712404221CE426600883E13 /* CustomRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681821C66488007CADA0 /* CustomRefreshView.swift */; };
+		A712404221CE426600883E13 /* CustomRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681821C66488007CADA0 /* CustomRefresh.swift */; };
 		A712404321CE426600883E13 /* CustomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681921C66489007CADA0 /* CustomTableViewController.swift */; };
 		A712404421CE426600883E13 /* DefaultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681A21C66489007CADA0 /* DefaultTableViewController.swift */; };
 		A712404521CE426600883E13 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681B21C66489007CADA0 /* ViewModel.swift */; };
@@ -57,7 +57,7 @@
 		A71F67F321C66249007CADA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A71F67F221C66249007CADA0 /* Assets.xcassets */; };
 		A71F67F621C6624A007CADA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A71F67F421C6624A007CADA0 /* LaunchScreen.storyboard */; };
 		A71F680C21C6624A007CADA0 /* CustomSpec+Extend.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F680B21C6624A007CADA0 /* CustomSpec+Extend.swift */; };
-		A71F681C21C66489007CADA0 /* CustomRefreshView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681821C66488007CADA0 /* CustomRefreshView.swift */; };
+		A71F681C21C66489007CADA0 /* CustomRefresh.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681821C66488007CADA0 /* CustomRefresh.swift */; };
 		A71F681D21C66489007CADA0 /* CustomTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681921C66489007CADA0 /* CustomTableViewController.swift */; };
 		A71F681E21C66489007CADA0 /* DefaultTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681A21C66489007CADA0 /* DefaultTableViewController.swift */; };
 		A71F681F21C66489007CADA0 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A71F681B21C66489007CADA0 /* ViewModel.swift */; };
@@ -158,7 +158,7 @@
 		A71F67F721C6624A007CADA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A71F680721C6624A007CADA0 /* RxPullToRefreshUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = RxPullToRefreshUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A71F680B21C6624A007CADA0 /* CustomSpec+Extend.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomSpec+Extend.swift"; sourceTree = "<group>"; };
-		A71F681821C66488007CADA0 /* CustomRefreshView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRefreshView.swift; sourceTree = "<group>"; };
+		A71F681821C66488007CADA0 /* CustomRefresh.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomRefresh.swift; sourceTree = "<group>"; };
 		A71F681921C66489007CADA0 /* CustomTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomTableViewController.swift; sourceTree = "<group>"; };
 		A71F681A21C66489007CADA0 /* DefaultTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultTableViewController.swift; sourceTree = "<group>"; };
 		A71F681B21C66489007CADA0 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
@@ -331,7 +331,7 @@
 				A71F67ED21C66248007CADA0 /* ViewController.swift */,
 				A705A4BA21CF1999006C9B67 /* BaseTableViewController.swift */,
 				A7D2469321D2672F005D9F3E /* BaseTableViewController+UITest.swift */,
-				A71F681821C66488007CADA0 /* CustomRefreshView.swift */,
+				A71F681821C66488007CADA0 /* CustomRefresh.swift */,
 				A71F681921C66489007CADA0 /* CustomTableViewController.swift */,
 				A71F681A21C66489007CADA0 /* DefaultTableViewController.swift */,
 				A71F681B21C66489007CADA0 /* ViewModel.swift */,
@@ -680,7 +680,7 @@
 				A7D2469421D2672F005D9F3E /* BaseTableViewController+UITest.swift in Sources */,
 				A705A4BB21CF1999006C9B67 /* BaseTableViewController.swift in Sources */,
 				A71F681D21C66489007CADA0 /* CustomTableViewController.swift in Sources */,
-				A71F681C21C66489007CADA0 /* CustomRefreshView.swift in Sources */,
+				A71F681C21C66489007CADA0 /* CustomRefresh.swift in Sources */,
 				A71F681E21C66489007CADA0 /* DefaultTableViewController.swift in Sources */,
 				A71F681F21C66489007CADA0 /* ViewModel.swift in Sources */,
 			);
@@ -693,7 +693,7 @@
 				A712404021CE426600883E13 /* AppDelegate.swift in Sources */,
 				A7D2469521D26730005D9F3E /* BaseTableViewController+UITest.swift in Sources */,
 				A705A4BC21CF1D0F006C9B67 /* BaseTableViewController.swift in Sources */,
-				A712404221CE426600883E13 /* CustomRefreshView.swift in Sources */,
+				A712404221CE426600883E13 /* CustomRefresh.swift in Sources */,
 				A754123621D6FBFA00442999 /* CustomSpec+Base.swift in Sources */,
 				A71F680C21C6624A007CADA0 /* CustomSpec+Extend.swift in Sources */,
 				A712404321CE426600883E13 /* CustomTableViewController.swift in Sources */,
