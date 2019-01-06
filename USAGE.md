@@ -32,13 +32,8 @@ self.topPullToRefresh.rx.action
         .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
             // Send request if RxPullToRefreshState is changed to .loading
             switch state {
-            case .initial: break
-            case .pulling: break
-            case .overThreshold: break
             case .loading: self?.prepend()
-            case .finished: break
-            case .failed: break
-            case .backing: break
+            default:       break
             }
         })
         .disposed(by: self.disposeBag)
