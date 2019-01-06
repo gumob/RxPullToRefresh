@@ -26,7 +26,7 @@ matrix:
     - env: XCODE_TEST="YES" RUNTIME="iOS 12.1" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
     - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPhone 8 Plus" COVERAGE="NO"
     - env: XCODE_TEST="YES" RUNTIME="iOS 10.3" DEVICE="iPhone 7"      COVERAGE="NO"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"  DEVICE="iPhone 6"     COVERAGE="NO"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"  DEVICE="iPhone 6"      COVERAGE="NO"
 #    - env: CARTHAGE_TEST="YES"
     - env: SWIFT_LINT="YES"
     - env: POD_LINT="YES"
