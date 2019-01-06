@@ -8,7 +8,7 @@
 ![Packagist](https://img.shields.io/packagist/l/doctrine/orm.svg)
 
 # RxPullToRefresh
-A Swift library enables you to create a pull to refreshable UIScrollView with a custom view supporting RxSwift.
+A Swift library allows you to create a flexibly customizable pull-to-refresh view supporting RxSwift.
 
 <img src="https://raw.githubusercontent.com/gumob/RxPullToRefresh/master/Metadata/screenshot-animation.gif" alt="drawing" width="240px" style="width:240px;"/>
 
@@ -85,13 +85,8 @@ self.topPullToRefresh.rx.action
         .subscribe(onNext: { [weak self] (state: RxPullToRefreshState, progress: CGFloat, scroll: CGFloat) in
             // Send request if RxPullToRefreshState is changed to .loading
             switch state {
-            case .initial: break
-            case .pulling: break
-            case .overThreshold: break
             case .loading: self?.prepend()
-            case .finished: break
-            case .failed: break
-            case .backing: break
+            default:       break
             }
         })
         .disposed(by: self.disposeBag)
@@ -134,7 +129,7 @@ override func viewDidDisappear(_ animated: Bool) {
 
 #### About the example project
 
-`RxPullToRefresh` allows you flexibly customize a refresh view by inheriting [RxPullToRefresh](file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefresh.html) and [RxPullToRefreshView](file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefreshView.html) classes. Please check [example sources](https://github.com/gumob/RxPullToRefresh/blob/master/Example/) for advanced usage.
+`RxPullToRefresh` allows you flexibly customize a refresh view by inheriting [RxPullToRefresh](https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html) and [RxPullToRefreshView](https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefreshView.html) classes. Please check [example sources](https://github.com/gumob/RxPullToRefresh/blob/master/Example/) for advanced usage.
 
 - [CustomRefresh](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from `RxPullToRefresh`.
 - [CustomRefreshView](https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift): A class inheriting from `RxPullToRefreshView`. Animation logics are implemented in this class.

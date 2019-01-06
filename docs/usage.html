@@ -136,13 +136,8 @@
         <span class="o">.</span><span class="nf">subscribe</span><span class="p">(</span><span class="nv">onNext</span><span class="p">:</span> <span class="p">{</span> <span class="p">[</span><span class="k">weak</span> <span class="k">self</span><span class="p">]</span> <span class="p">(</span><span class="nv">state</span><span class="p">:</span> <span class="kt">RxPullToRefreshState</span><span class="p">,</span> <span class="nv">progress</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">,</span> <span class="nv">scroll</span><span class="p">:</span> <span class="kt">CGFloat</span><span class="p">)</span> <span class="k">in</span>
             <span class="c1">// Send request if RxPullToRefreshState is changed to .loading</span>
             <span class="k">switch</span> <span class="n">state</span> <span class="p">{</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">initial</span><span class="p">:</span> <span class="k">break</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">pulling</span><span class="p">:</span> <span class="k">break</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">overThreshold</span><span class="p">:</span> <span class="k">break</span>
             <span class="k">case</span> <span class="o">.</span><span class="nv">loading</span><span class="p">:</span> <span class="k">self</span><span class="p">?</span><span class="o">.</span><span class="nf">prepend</span><span class="p">()</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">finished</span><span class="p">:</span> <span class="k">break</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">failed</span><span class="p">:</span> <span class="k">break</span>
-            <span class="err"></span><span class="k">case</span> <span class="o">.</span><span class="nv">backing</span><span class="p">:</span> <span class="k">break</span>
+            <span class="k">default</span><span class="p">:</span>       <span class="k">break</span>
             <span class="p">}</span>
         <span class="p">})</span>
         <span class="o">.</span><span class="nf">disposed</span><span class="p">(</span><span class="nv">by</span><span class="p">:</span> <span class="k">self</span><span class="o">.</span><span class="n">disposeBag</span><span class="p">)</span>
@@ -174,7 +169,7 @@
 <h3 id='advanced-usage' class='heading'>Advanced Usage</h3>
 <h4 id='about-the-example-project' class='heading'>About the example project</h4>
 
-<p><code><a href="Classes/RxPullToRefresh.html">RxPullToRefresh</a></code> allows you flexibly customize a refresh view by inheriting <a href="file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefresh.html">RxPullToRefresh</a> and <a href="file:///Users/kojirof/Documents/pj-github/RxPullToRefresh/docs/Classes/RxPullToRefreshView.html">RxPullToRefreshView</a> classes. Please check <a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/">example sources</a> for advanced usage.</p>
+<p><code><a href="Classes/RxPullToRefresh.html">RxPullToRefresh</a></code> allows you flexibly customize a refresh view by inheriting <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefresh.html">RxPullToRefresh</a> and <a href="https://gumob.github.io/RxPullToRefresh/Classes/RxPullToRefreshView.html">RxPullToRefreshView</a> classes. Please check <a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/">example sources</a> for advanced usage.</p>
 
 <ul>
 <li><a href="https://github.com/gumob/RxPullToRefresh/blob/master/Example/CustomRefresh.swift">CustomRefresh</a>: A class inheriting from <code><a href="Classes/RxPullToRefresh.html">RxPullToRefresh</a></code>.</li>
