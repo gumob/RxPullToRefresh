@@ -37,7 +37,6 @@ custom_categories:
   - name: Extensions
     children:
     - Reactive
-    - UIScrollView
     - RxPullToRefreshProxy
     - RxPullToRefreshCompatible
   - name: Enumerations
