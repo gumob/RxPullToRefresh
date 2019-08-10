@@ -1,7 +1,7 @@
 Pod::Spec.new do |s|
 
     s.name              = "RxPullToRefresh"
-    s.version           = "0.1.1"
+    s.version           = "1.0.0"
     s.summary           = "A Swift library allows you to create a flexibly customizable pull-to-refresh view supporting RxSwift."
     s.homepage          = "https://github.com/gumob/RxPullToRefresh"
     s.documentation_url = "https://gumob.github.io/RxPullToRefresh"
