@@ -13,12 +13,12 @@ Pod::Spec.new do |s|
     s.source_files              = ["Sources/*.{swift}"]
     s.requires_arc              = true
 
-    s.swift_version             = "4.2"
+    s.swift_version             = "5.0"
 
     s.ios.deployment_target     = "9.0"
     s.ios.framework             = "Foundation", "UIKit", "CoreGraphics"
 
-    s.dependency 'RxSwift', '~> 4.0'
-    s.dependency 'RxCocoa', '~> 4.0'
+    s.dependency 'RxSwift', '~> 5.0'
+    s.dependency 'RxCocoa', '~> 5.0'
 
 end
