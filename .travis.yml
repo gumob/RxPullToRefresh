@@ -41,16 +41,14 @@ before_install:
     fi
 
   - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
+    gem install cocoapods --pre --no-document --quiet;
     fi
   - if [ "$XCODE_TEST" == "YES" ]; then
-    gem install xcpretty -N --no-ri --no-rdoc --quiet;
+    gem install xcpretty --no-document --quiet;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     brew update;
     brew outdated carthage || brew upgrade carthage;
-    fi
-  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
 
