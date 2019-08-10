@@ -124,7 +124,7 @@ platform :ios do
     run_scan(
       clean: true,
       devices: [
-        "iPhone X (12.1)",
+        "iPhone X (12.2)",
       ],
 #       only_testing: [
 #       'RxPullToRefreshTests/AnimatorSpec',
@@ -143,7 +143,7 @@ platform :ios do
     run_scan(
       clean: false,
       devices: [
-        "iPhone X (12.1)",
+        "iPhone X (12.2)",
       ],
       only_testing: [],
     )
