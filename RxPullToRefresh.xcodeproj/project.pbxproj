@@ -70,6 +70,7 @@
 		A743D1D421C8F64000230502 /* RxPullToRefresh+Refreshing.swift in Sources */ = {isa = PBXBuildFile; fileRef = A743D1D321C8F64000230502 /* RxPullToRefresh+Refreshing.swift */; };
 		A754123621D6FBFA00442999 /* CustomSpec+Base.swift in Sources */ = {isa = PBXBuildFile; fileRef = A754123521D6FBFA00442999 /* CustomSpec+Base.swift */; };
 		A754123821D7422200442999 /* RxPullToRefreshDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A754123721D7422200442999 /* RxPullToRefreshDelegate.swift */; };
+		A7689F2122FED42500CBADA7 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7689F2022FED42500CBADA7 /* RxRelay.framework */; };
 		A7862C1521DDE66F00BE79FA /* AnimatorSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7862C1421DDE66F00BE79FA /* AnimatorSpec.swift */; };
 		A7D2469421D2672F005D9F3E /* TableViewController+UITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2469321D2672F005D9F3E /* TableViewController+UITest.swift */; };
 		A7D2469521D26730005D9F3E /* TableViewController+UITest.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7D2469321D2672F005D9F3E /* TableViewController+UITest.swift */; };
@@ -78,6 +79,7 @@
 		A7F23F1A21D768FC00209B4B /* UIScrollView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F23F1921D768FC00209B4B /* UIScrollView+Rx.swift */; };
 		A7F23F1C21D769EA00209B4B /* RxPullToRefreshDelegate+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F23F1B21D769EA00209B4B /* RxPullToRefreshDelegate+Rx.swift */; };
 		A7F23F1E21D76A7D00209B4B /* RxPullToRefreshView+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = A7F23F1D21D76A7D00209B4B /* RxPullToRefreshView+Rx.swift */; };
+		A7F3409A2300EB84002BB7E1 /* RxRelay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A7689F2022FED42500CBADA7 /* RxRelay.framework */; };
 		DFABE37316F3D189932D7419 /* RxPullToRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFABE4F7CCCC817EC30BBCBA /* RxPullToRefresh+Rx.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +169,7 @@
 		A743D1D321C8F64000230502 /* RxPullToRefresh+Refreshing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "RxPullToRefresh+Refreshing.swift"; sourceTree = "<group>"; };
 		A754123521D6FBFA00442999 /* CustomSpec+Base.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CustomSpec+Base.swift"; sourceTree = "<group>"; };
 		A754123721D7422200442999 /* RxPullToRefreshDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RxPullToRefreshDelegate.swift; sourceTree = "<group>"; };
+		A7689F2022FED42500CBADA7 /* RxRelay.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RxRelay.framework; path = Carthage/Build/iOS/RxRelay.framework; sourceTree = "<group>"; };
 		A7862C1421DDE66F00BE79FA /* AnimatorSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnimatorSpec.swift; sourceTree = "<group>"; };
 		A7D2469321D2672F005D9F3E /* TableViewController+UITest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TableViewController+UITest.swift"; sourceTree = "<group>"; };
 		A7F0132521D121F20022BF84 /* Debug.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debug.swift; sourceTree = "<group>"; };
@@ -209,6 +212,7 @@
 				A743D1CC21C7A17F00230502 /* RxPullToRefresh.framework in Frameworks */,
 				A71F682521C66543007CADA0 /* RxSwift.framework in Frameworks */,
 				A71F682421C66543007CADA0 /* RxCocoa.framework in Frameworks */,
+				A7689F2122FED42500CBADA7 /* RxRelay.framework in Frameworks */,
 				A71F682721C6669B007CADA0 /* RxDataSources.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -222,6 +226,7 @@
 				A712402621CDCD0200883E13 /* RxCocoa.framework in Frameworks */,
 				A712402321CD476C00883E13 /* RxSwift.framework in Frameworks */,
 				A712401B21CD43A400883E13 /* RxTest.framework in Frameworks */,
+				A7F3409A2300EB84002BB7E1 /* RxRelay.framework in Frameworks */,
 				A712404821CE428000883E13 /* RxDataSources.framework in Frameworks */,
 				A712404A21CE430A00883E13 /* Differentiator.framework in Frameworks */,
 				A712401C21CD43A400883E13 /* Quick.framework in Frameworks */,
@@ -314,6 +319,7 @@
 				A712401921CD43A400883E13 /* RxBlocking.framework */,
 				A71F679021C54FAB007CADA0 /* RxCocoa.framework */,
 				A71F682621C6669B007CADA0 /* RxDataSources.framework */,
+				A7689F2022FED42500CBADA7 /* RxRelay.framework */,
 				A71F679121C54FAB007CADA0 /* RxSwift.framework */,
 				A712401721CD43A400883E13 /* RxTest.framework */,
 				A712404921CE430100883E13 /* Differentiator.framework */,
@@ -526,10 +532,11 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxTest.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxBlocking.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Quick.framework",
@@ -539,10 +546,11 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
-				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxTest.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxRelay.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxTest.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxBlocking.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Quick.framework",
@@ -618,6 +626,7 @@
 			inputPaths = (
 				"$(SRCROOT)/Carthage/Build/iOS/RxSwift.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxCocoa.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RxRelay.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/RxDataSources.framework",
 				"$(SRCROOT)/Carthage/Build/iOS/Differentiator.framework",
 			);
@@ -627,6 +636,7 @@
 			outputPaths = (
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxSwift.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxCocoa.framework",
+				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxRelay.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/RxDataSources.framework",
 				"$(BUILT_PRODUCTS_DIR)/$(FRAMEWORKS_FOLDER_PATH)/Differentiator.framework",
 			);
