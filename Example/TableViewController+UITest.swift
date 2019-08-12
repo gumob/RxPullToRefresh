@@ -32,7 +32,7 @@ extension BaseTableViewController {
         /* Initialize toolbar items */
         self.refreshTopButtonItem = UIBarButtonItem(title: "Top", style: .plain, target: nil, action: nil)
         self.refreshTopButtonItem.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     self?.forcePrepend()
                 })
@@ -40,7 +40,7 @@ extension BaseTableViewController {
 
         self.refreshBottomButtonItem = UIBarButtonItem(title: "Bottom", style: .plain, target: nil, action: nil)
         self.refreshBottomButtonItem.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     self?.forceAppend()
                 })
@@ -48,7 +48,7 @@ extension BaseTableViewController {
 
         self.reloadButtonItem = UIBarButtonItem(title: "Reload", style: .plain, target: nil, action: nil)
         self.reloadButtonItem.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     self?.reload()
                 })
@@ -73,7 +73,7 @@ extension BaseTableViewController {
         /* Initialize button */
         self.toggleDragLoad = DebugButton(title: "Load on Drag")
         self.toggleDragLoad.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.topPullToRefresh.shouldStartLoadingWhileDragging = !self.topPullToRefresh.shouldStartLoadingWhileDragging
@@ -83,7 +83,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.toggleError = DebugButton(title: "Fail Load")
         self.toggleError.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.viewModel.shouldFailLoad.accept(!self.viewModel.shouldFailLoad.value)
@@ -92,7 +92,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.toggleNavBarButton = DebugButton(title: "NavBar")
         self.toggleNavBarButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self,
                           let nc: UINavigationController = self.navigationController else { return }
@@ -102,7 +102,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.toggleToolbarButton = DebugButton(title: "ToolBar")
         self.toggleToolbarButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self,
                           let nc: UINavigationController = self.navigationController else { return }
@@ -112,7 +112,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.refreshTopButton = DebugButton(title: "Refresh Top")
         self.refreshTopButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.forcePrepend()
@@ -120,7 +120,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.refreshBottomButton = DebugButton(title: "Refresh Bottom")
         self.refreshBottomButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.forceAppend()
@@ -128,7 +128,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.endAllRefreshButton = DebugButton(title: "End Refresh")
         self.endAllRefreshButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.tableView.p2r.endAllRefreshing()
@@ -136,7 +136,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.reloadButton = DebugButton(title: "Reload")
         self.reloadButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.reload()
@@ -144,7 +144,7 @@ extension BaseTableViewController {
                 .disposed(by: self.disposeBag)
         self.backButton = DebugButton(title: "Back to Top")
         self.backButton.rx.tap
-                .throttle(1.0, latest: false, scheduler: MainScheduler.instance)
+                .throttle(.milliseconds(1000), latest: false, scheduler: MainScheduler.instance)
                 .subscribe(onNext: { [weak self] in
                     guard let `self`: BaseTableViewController = self else { return }
                     self.navigationController?.popToRootViewController(animated: true)

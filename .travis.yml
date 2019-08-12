@@ -5,9 +5,9 @@ osx_image: xcode10.2
 xcode_project: RxPullToRefresh.xcodeproj
 xcode_scheme: RxPullToRefresh
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 #    - develop
 #    - "/^v?[0-9\\.]+/"
 
@@ -24,39 +24,39 @@ env:
 
 matrix:
   include:
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.1" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
+    - env: XCODE_TEST="YES" RUNTIME="iOS 12.2" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
     - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPhone 8 Plus" COVERAGE="NO"
     - env: XCODE_TEST="YES" RUNTIME="iOS 10.3" DEVICE="iPhone 7"      COVERAGE="NO"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"  DEVICE="iPhone 6"      COVERAGE="NO"
-#    - env: CARTHAGE_TEST="YES"
+#    - env: XCODE_TEST="YES" RUNTIME="iOS 9.3"  DEVICE="iPhone 6"      COVERAGE="NO"
+    #    - env: CARTHAGE_TEST="YES"
     - env: SWIFT_LINT="YES"
-    - env: POD_LINT="YES"
+    - env: POD_LINT="NO"
 
 before_install:
-  # Workaround for “Library not loaded: /usr/lib/libauto.dylib”; see:
-  #   https://stackoverflow.com/questions/55389080/xcode-10-2-failed-to-run-app-on-simulator-with-ios-10
-  #   https://developer.apple.com/documentation/xcode_release_notes/xcode_10_2_1_release_notes
-  - if [ "RUNTIME" == "iOS 9.3" ]; then
-    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
-    fi
+#  Workaround for “Library not loaded: /usr/lib/libauto.dylib”; see:
+#  https://stackoverflow.com/questions/55389080/xcode-10-2-failed-to-run-app-on-simulator-with-ios-10
+#  https://developer.apple.com/documentation/xcode_release_notes/xcode_10_2_1_release_notes
+#  - if [ "$RUNTIME" == "iOS 9.3" ]; then
+#    sudo mkdir '/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 9.3.simruntime/Contents/Resources/RuntimeRoot/usr/lib/swift';
+#    fi
+
   - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-rdoc --no-ri --no-document --quiet;
+    gem install cocoapods --pre --no-document --quiet;
     fi
   - if [ "$XCODE_TEST" == "YES" ]; then
-    gem install xcpretty -N --no-ri --no-rdoc --quiet;
+    gem install xcpretty --no-document --quiet;
     fi
   - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     brew update;
     brew outdated carthage || brew upgrade carthage;
-    fi
-  - if [ "$CARTHAGE_TEST" = "YES" ] || [ "$XCODE_TEST" = "YES" ]; then
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
-#  - swift -version;
-#  - xcrun simctl list;
-#  - xcodebuild -version;
-#  - xcodebuild -showsdks;
-#  - xcodebuild -list;
+
+  - swift -version;
+  - xcrun simctl list;
+  - xcodebuild -version;
+  - xcodebuild -showsdks;
+  - xcodebuild -list;
 
 install:
   - if [ "$SWIFT_LINT" == "YES" ]; then
@@ -73,17 +73,19 @@ before_script:
 
 script:
   - set -o pipefail;
+  - swift -version;
+
   - if [ "$XCODE_TEST" == "YES" ]; then
     xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
     fi
-  - if [ "$POD_LINT" == "YES" ]; then
-    pod lib lint;
-    fi
   - if [ "$SWIFT_LINT" == "YES" ]; then
     swiftlint lint;
+    fi
+  - if [ "$POD_LINT" == "YES" ]; then
+    pod lib lint;
     fi
 
 after_success:

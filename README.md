@@ -23,8 +23,8 @@ A Swift library allows you to create a flexibly customizable pull-to-refresh vie
 
 ## Requirements
 
-- iOS 9.0 or later
-- Swift 4.2
+- iOS 10.0 or later
+- Swift 5.0 or later
 
 ## Installation
 
@@ -33,7 +33,9 @@ A Swift library allows you to create a flexibly customizable pull-to-refresh vie
 Add the following to your `Cartfile` and follow [these instructions](https://github.com/Carthage/Carthage#adding-frameworks-to-an-application).
 
 ```
-github "gumob/RxPullToRefresh"
+github "gumob/RxPullToRefresh"        # Swift 5.0
+github "gumob/RxPullToRefresh" ~> 1.0 # Swift 5.0
+github "gumob/RxPullToRefresh" ~> 0.1 # Swift 4.2
 ```
 
 Do not forget to include RxSwift.framework and RxCocoa.framework. Otherwise it will fail to build the application.<br/>
@@ -45,10 +47,11 @@ Do not forget to include RxSwift.framework and RxCocoa.framework. Otherwise it w
 To integrate RxPullToRefresh into your project, add the following to your `Podfile`.
 
 ```ruby
-platform :ios, '9.3'
+platform :ios, '10.0'
 use_frameworks!
 
-pod 'RxPullToRefresh'
+pod 'RxPullToRefresh', '~> 1.0'   # Swift 5.0
+pod 'RxPullToRefresh', '~> 0.1'   # Swift 4.2
 ```
 
 ## Usage
