@@ -50,10 +50,6 @@ install:
     ./install-swiftlint.sh;
     fi
 
-before_script:
-  - if [ "$XCODE_TEST" == "YES" ]; then
-    fi
-
 script:
   - set -o pipefail;
   - swift -version;
