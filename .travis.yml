@@ -24,17 +24,14 @@ env:
 
 matrix:
   include:
-    - env: XCODE_TEST="YES" RUNTIME="iOS 13.5" DEVICE="iPhone 11 Pro" COVERAGE="YES" CODECOV_FLAG="ios13"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 12.4" DEVICE="iPhone XS Max" COVERAGE="YES" CODECOV_FLAG="ios12"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 11.4" DEVICE="iPhone 8 Plus" COVERAGE="NO"  CODECOV_FLAG="ios11"
-    - env: XCODE_TEST="YES" RUNTIME="iOS 10.3.1" DEVICE="iPhone 7"    COVERAGE="NO"  CODECOV_FLAG="ios10"
+    - env: DESTINATION="OS=13.5,name=iPhone 11 Pro"  XCODE_TEST="YES" LINT="NO"  COVERAGE="YES" CODECOV_FLAG="ios13"
+    - env: DESTINATION="OS=12.4,name=iPhone X"       XCODE_TEST="YES" LINT="NO"  COVERAGE="NO"  CODECOV_FLAG="ios12"
+    - env: DESTINATION="OS=11.4,name=iPhone 7"       XCODE_TEST="YES" LINT="YES" COVERAGE="NO"  CODECOV_FLAG="ios11"
+    - env: DESTINATION="OS=10.3.1,name=iPhone 6"     XCODE_TEST="YES" LINT="NO"  COVERAGE="NO"  CODECOV_FLAG="ios10"
     - env: SWIFT_LINT="YES"
     - env: POD_LINT="NO"
 
 before_install:
-  - if [ "$POD_LINT" == "YES" ]; then
-    gem install cocoapods --pre --no-document --quiet;
-    fi
   - if [ "$XCODE_TEST" == "YES" ]; then
     gem install xcpretty --no-document --quiet;
     fi
@@ -43,11 +40,10 @@ before_install:
     brew outdated carthage || brew upgrade carthage;
     carthage bootstrap --platform iOS --no-use-binaries --cache-builds;
     fi
-  - swift -version;
-  - xcrun simctl list;
-  - xcodebuild -version;
-  - xcodebuild -showsdks;
-  - xcodebuild -list;
+  - if [ "$POD_LINT" == "YES" ]; then
+    gem install cocoapods --pre --no-document --quiet;
+    pod repo update;
+    fi
 
 install:
   - if [ "$SWIFT_LINT" == "YES" ]; then
@@ -56,17 +52,22 @@ install:
 
 before_script:
   - if [ "$XCODE_TEST" == "YES" ]; then
-    DEVICE_ID=com.apple.CoreSimulator.SimDeviceType.$(echo $DEVICE | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
-    RUNTIME_ID=com.apple.CoreSimulator.SimRuntime.$(echo $RUNTIME | sed -E -e "s/[ \-]+/ /g" -e "s/[^[:alnum:]]/-/g");
-    DESTINATION_ID=$(xcrun simctl create Travis $DEVICE_ID $RUNTIME_ID);
-    xcrun simctl boot $DESTINATION_ID;
     fi
 
 script:
   - set -o pipefail;
   - swift -version;
+
+  - if [ "$TRAVIS_OS_NAME" == "osx" ]; then
+    swift -version;
+    xcrun simctl list;
+    xcodebuild -version;
+    xcodebuild -showsdks;
+    xcodebuild -list;
+    fi
+
   - if [ "$XCODE_TEST" == "YES" ]; then
-    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "id=$DESTINATION_ID" -enableCodeCoverage $COVERAGE | xcpretty -c;
+    xcodebuild clean test -project "$TRAVIS_XCODE_PROJECT" -scheme "$TRAVIS_XCODE_SCHEME" -destination "$DESTINATION" -enableCodeCoverage $COVERAGE | xcpretty -c;
     fi
   - if [ "$CARTHAGE_TEST" == "YES" ]; then
     carthage build --no-skip-current --platform iOS;
@@ -93,5 +94,5 @@ after_failure:
     cat /var/log/system.log
     fi
 
-notifications:
-  email: false
+#notifications:
+#  email: false
