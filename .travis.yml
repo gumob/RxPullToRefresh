@@ -80,15 +80,15 @@ after_success:
     bash <(curl -s https://codecov.io/bash) -J 'RxPullToRefresh' -cF "$CODECOV_FLAG" -y ".codecov.yml";
     fi
 
-after_failure:
-  - if [ "$CARTHAGE_TEST" == "YES" ]; then
-    cat $TMPDIR/carthage-*.log | true
-    cat /var/log/system.log
-    fi
-  - if [ "$XCODE_TEST" == "YES" ]; then
-    find $HOME/Library/Developer/Xcode/DerivedData/RxPullToRefresh-*/Logs/ -name '*.log' -print0 | xargs -0 cat
-    cat /var/log/system.log
-    fi
+#after_failure:
+#  - if [ "$CARTHAGE_TEST" == "YES" ]; then
+#    cat $TMPDIR/carthage-*.log | true
+#    cat /var/log/system.log
+#    fi
+#  - if [ "$XCODE_TEST" == "YES" ]; then
+#    find $HOME/Library/Developer/Xcode/DerivedData/RxPullToRefresh-*/Logs/ -name '*.log' -print0 | xargs -0 cat
+#    cat /var/log/system.log
+#    fi
 
 #notifications:
 #  email: false
