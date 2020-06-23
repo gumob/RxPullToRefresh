@@ -100,10 +100,10 @@ platform :ios do
   lane :clean_test_all do |options|
     # Execute test one by one to avoid failing with timeout
     tests = [
-      {device: "iPhone XS", clean: true, coverage: true},
+      {device: "iPhone 11 Pro (13.5)", clean: true, coverage: true},
+      {device: "iPhone XS (12.4)", clean: true, coverage: false},
       {device: "iPhone 7 Plus (11.4)", clean: false, coverage: false},
       {device: "iPhone 6 (10.3.1)", clean: false, coverage: false},
-#       {device: "iPhone 5s (9.3)", clean: false, coverage: false},
     ]
     for test in tests
       run_scan(
@@ -124,7 +124,7 @@ platform :ios do
     run_scan(
       clean: true,
       devices: [
-        "iPhone X (12.2)",
+        "iPhone 11 Pro (13.5)",
       ],
 #       only_testing: [
 #       'RxPullToRefreshTests/AnimatorSpec',
@@ -143,7 +143,7 @@ platform :ios do
     run_scan(
       clean: false,
       devices: [
-        "iPhone X (12.2)",
+        "iPhone 11 Pro (13.5)",
       ],
       only_testing: [],
     )
