@@ -5,11 +5,11 @@ osx_image: xcode11.5
 xcode_project: RxPullToRefresh.xcodeproj
 xcode_scheme: RxPullToRefresh
 
-#branches:
-#  only:
-#    - master
-#    - develop
-#    - "/^v?[0-9\\.]+/"
+branches:
+  only:
+    - master
+    - develop
+    - "/^v?[0-9\\.]+/"
 
 cache:
   bundler: true
